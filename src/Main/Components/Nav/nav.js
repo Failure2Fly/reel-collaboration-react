@@ -7,7 +7,8 @@ class Nav extends React.Component {
         super(props)
         this.state = {
             email: "",
-            password: ""
+            password: "",
+            loggedIn: false
         }
     }
 
@@ -27,6 +28,10 @@ class Nav extends React.Component {
             // Signed in
             var user = userCredential.user;
             console.log('Logged In')
+            this.setState({
+                loggedIn: true
+            })
+            console.log(this.state.loggedIn)
             // ...
         })
         .catch((error) => {
@@ -35,7 +40,28 @@ class Nav extends React.Component {
         });
     }
 
+    signOutMethod = () => {
+        firebase.auth().signOut().then(() => {
+            // Sign-out successful.
+            this.setState({
+                loggedIn: false
+            })
+          }).catch((error) => {
+            // An error happened.
+          });
+    }
+
+
     render() {
+
+    const greeting = () => {
+        if(this.state.loggedIn){
+            return <p>Devin</p>
+        }
+        else{
+            return <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign In</a> 
+        }
+    }
 
     return (
         <div className="Nav">
@@ -91,11 +117,10 @@ class Nav extends React.Component {
                                 <div className="container-fluid ">                            
                                     <ul className="navbar-nav  navbar-nav-scroll">
                                         <li className="nav-item">
-                                            <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign In</a>
-                                            {/* <a className="nav-link" href="#">Profile</a> */}
+                                            {greeting()}     
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Sign Out</a>
+                                            <a className="nav-link" href="#" tabindex="-1"  onClick={() => this.signOutMethod()}>Sign Out</a>
                                         </li>
                                     </ul>
                                 </div>
