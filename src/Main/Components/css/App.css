@@ -1,0 +1,19 @@
+body{
+  background-color: aquamarine;
+}
+.Nav{
+  width: 100%;
+}
+.navbar-brand{
+  font-family: 'Special Elite', cursive;
+}
+.full-nav {
+  display: flex !important;
+  justify-content: space-between;
+}
+.nav-bottom{
+  background-color: black;
+}
+.nav-bottom .nav-link{
+  color: white;
+}
