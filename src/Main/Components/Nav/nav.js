@@ -1,5 +1,5 @@
 import React from 'react';
-import {firebase} from '../../firebase'
+import {firebase, firebaseAuth} from '../../firebase'
 
 class Nav extends React.Component {
 
@@ -22,17 +22,34 @@ class Nav extends React.Component {
         console.log(this.state.password)
     }
 
+    signUpMethod = () => {
+        console.log('hello')
+        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then((userCredential) => {
+            // Signed in 
+            var user = userCredential.user;
+            this.setState({
+                loggedIn: true
+            
+            })
+            console.log('note')
+        })
+        .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ..
+        });
+    }
+
     signInMethod = () => {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((userCredential) => {
             // Signed in
             var user = userCredential.user;
-            console.log('Logged In')
             this.setState({
                 loggedIn: true
             })
             console.log(this.state.loggedIn)
-            // ...
         })
         .catch((error) => {
             var errorCode = error.code;
@@ -46,20 +63,39 @@ class Nav extends React.Component {
             this.setState({
                 loggedIn: false
             })
-          }).catch((error) => {
+          })
+          .catch((error) => {
             // An error happened.
           });
     }
+
+
+                
 
 
     render() {
 
     const greeting = () => {
         if(this.state.loggedIn){
-            return <p>Devin</p>
+            return <div className="container-fluid ">                            
+                <ul className="navbar-nav  navbar-nav-scroll">
+                    <li className="nav-item">
+                        <div>Devin</div> 
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#" tabindex="-1"  onClick={() => this.signOutMethod()}>Sign Out</a>
+                    </li>
+                </ul>                          
+            </div>
         }
         else{
-            return <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign In</a> 
+            return <div className="container-fluid ">                            
+            <ul className="navbar-nav  navbar-nav-scroll">
+                <li className="nav-item">
+                    <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign In</a>  
+                </li>
+            </ul>                          
+        </div>
         }
     }
 
@@ -114,16 +150,7 @@ class Nav extends React.Component {
                                 </div>
                             </div>
                             <nav className="navbar navbar-light bg-light">
-                                <div className="container-fluid ">                            
-                                    <ul className="navbar-nav  navbar-nav-scroll">
-                                        <li className="nav-item">
-                                            {greeting()}     
-                                        </li>
-                                        <li className="nav-item">
-                                            <a className="nav-link" href="#" tabindex="-1"  onClick={() => this.signOutMethod()}>Sign Out</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                {greeting()} 
                             </nav>
                         </nav>
                         <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -135,23 +162,51 @@ class Nav extends React.Component {
                                 </div>
                                 <div className="modal-body">
                                 <form>
-                                    <div classname="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} onChange={this.handleChange}></input>
-                                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                    <div className="mb-3">
+                                        <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
+                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} onChange={this.handleChange}></input>
+                                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                                     </div>
                                     <div className="mb-3">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" value={this.state.password} onChange={this.handleChange}></input>
+                                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                                        <input type="password" className="form-control" id="exampleInputPassword1" name="password" value={this.state.password} onChange={this.handleChange}></input>
                                     </div>
+                                    <p>Don't have an account yet.</p> <button type="button" onClick={() => this.signUpMethod()}>Sign Up</button>
                                 </form>
                                 </div>
                                 <div className="modal-footer">
                                     <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary" onClick={() => this.signInMethod()}>Save</button>
+                                    <button type="button" className="btn btn-primary" onClick={() => this.signInMethod()}>Submit</button>
                                 </div>
                                 </div>
                             </div>
+                            {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div className="modal-dialog">
+                                    <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="exampleModalLabel" >Sign In</h5>
+                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div className="modal-body">
+                                    <form>
+                                        <div classname="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} onChange={this.handleChange}></input>
+                                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" value={this.state.password} onChange={this.handleChange}></input>
+                                        </div>
+                                    </form>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" className="btn btn-primary" onClick={() => this.signUpMethod()}>Sign Up</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
