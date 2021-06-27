@@ -1,20 +1,23 @@
-import React from 'react';
-// import { render } from '@testing-library/react';
-import './css/App.css';
+import React, {useState} from 'react';
+import '../css/App.css';
 import Nav from './Nav/nav'
+import SignInModal from './SignIn/sign-In'
+import Profile from './Profile/profile'
 import NavBottom from './Nav/nav-bottom'
 
-class App extends React.Component {
+export default function App(){
 
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [signIn, setSignIn] = useState(false)
+  const [name, setName] = useState();
 
-  render() {
-    return (
-      <div className="App">
-        <Nav />
-        <NavBottom/>
-      </div>
-    );
-  }
+  return (
+    <div className="App">
+      <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} setSignIn={setSignIn} name={name}/>
+      <SignInModal signIn={signIn} setLoggedIn={setLoggedIn} setName={setName}/>
+      <Profile />
+      <NavBottom />
+    </div>
+  );
 }
 
-export default App;

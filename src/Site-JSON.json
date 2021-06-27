@@ -1,0 +1,44 @@
+// Directors and Producers can create projects. 
+// Directors and Producers can add people to a project
+// People can add themselves to a project, but a director or producer must approve before being added.
+// Only certain roles can see certain pages. Directors and Producers can see all pages. 
+// Only those that need to should see the script. 
+// Only those that need to should see the budget.
+// Only those that need to should be able to post to the casting page.
+
+
+// Individual
+{
+    "userId": 1,
+    "userInfo": {
+        "userName": "",
+        "dateOfBirth": "",
+        "phoneNumbers": [
+
+        ], 
+        "email": ""
+    }, 
+    "Roles": [
+
+    ]
+}
+
+// Casting
+{
+
+}
+
+// Scheduling
+{
+
+}
+
+// Forum
+{
+
+}
+
+// Budgeting
+{
+
+}

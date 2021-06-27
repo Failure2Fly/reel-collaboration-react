@@ -1,0 +1,15 @@
+.profile-page{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.col-right{
+    border: solid black 1px;
+    height: 100vh;
+}
+.videos{
+    border-bottom: solid black 1px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}

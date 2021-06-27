@@ -1,0 +1,29 @@
+.Nav{
+    border-bottom: solid black 1px;
+    background-color: #403D58;
+}
+.navbar-brand{
+    font-family: 'Special Elite', cursive;
+    padding-left: 10px;
+    color: white;
+}
+.full-nav {
+    display: flex !important;
+    justify-content: space-between;
+}
+.sign-in{
+    flex: none;
+    margin: 10px 20px 10px 0px;
+}
+.nav-link{
+    color: #DBD56E
+}
+.nav-link:hover{
+    color: #F2E94E;
+}
+.nav-bottom{
+    background-color: #403D58;
+}
+.nav-bottom .nav-link{
+    color: white;
+}

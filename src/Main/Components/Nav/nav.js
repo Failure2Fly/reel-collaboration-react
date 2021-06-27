@@ -1,219 +1,113 @@
 import React from 'react';
-import {firebase, firebaseAuth} from '../../firebase'
+import {firebase} from '../../firebase'
+import '../../css/nav.css'
 
-class Nav extends React.Component {
 
-    constructor(props){
-        super(props)
-        this.state = {
-            email: "",
-            password: "",
-            loggedIn: false
-        }
+export default function Nav({setSignIn, loggedIn, setLoggedIn, name}){
+
+    // const signUpMethod = () => {
+    //     firebase.auth().createUserWithEmailAndPassword()
+    //     .then((userCredential) => {
+    //         // Signed in 
+    //         var user = userCredential.user;
+    //         setLoggedIn(true)
+    //     })
+    //     .catch((error) => {
+    //         var errorCode = error.code;
+    //         var errorMessage = error.message;
+    //         // ..
+    //     });
+    // }
+    
+    const signIn = () => {
+        setSignIn(true)
     }
 
-    handleChange = (event) => {
-        const value = event.target.value;
-        this.setState({
-            [event.target.name]: value
-        })
-        console.log(event)
-        console.log(this.state.email)
-        console.log(this.state.password)
-    }
-
-    signUpMethod = () => {
-        console.log('hello')
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then((userCredential) => {
-            // Signed in 
-            var user = userCredential.user;
-            this.setState({
-                loggedIn: true
-            
-            })
-            console.log('note')
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // ..
-        });
-    }
-
-    signInMethod = () => {
-        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((userCredential) => {
-            // Signed in
-            var user = userCredential.user;
-            this.setState({
-                loggedIn: true
-            })
-            console.log(this.state.loggedIn)
-        })
-        .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-        });
-    }
-
-    signOutMethod = () => {
+    const signOutMethod = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
-            this.setState({
-                loggedIn: false
-            })
+            setLoggedIn(false)
           })
           .catch((error) => {
             // An error happened.
           });
     }
 
-
-                
-
-
-    render() {
-
     const greeting = () => {
-        if(this.state.loggedIn){
+        if(loggedIn){
             return <div className="container-fluid ">                            
                 <ul className="navbar-nav  navbar-nav-scroll">
-                    <li className="nav-item">
-                        <div>Devin</div> 
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#/" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {name}
+                        </a>
+                        <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
+                            <li><a className="dropdown-item" href="#/">Account</a></li>
+                        </ul>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#" tabindex="-1"  onClick={() => this.signOutMethod()}>Sign Out</a>
+                        <a className="nav-link" href="#/" tabindex="-1" onClick={() => signOutMethod()}>Sign Out</a>
                     </li>
                 </ul>                          
             </div>
         }
         else{
-            return <div className="container-fluid ">                            
-            <ul className="navbar-nav  navbar-nav-scroll">
-                <li className="nav-item">
-                    <a className="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign In</a>  
-                </li>
-            </ul>                          
-        </div>
+            return <button type="button" className="btn btn-primary sign-in" data-bs-toggle="modal" data-bs-target="#signIn" onClick={() => signIn()}>
+                Sign In
+            </button>                                           
         }
     }
 
+
     return (
-        <div className="Nav">
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col">
-                        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                            <div className="container-fluid">
-                                <a className="navbar-brand" href="#">Reel Collaboration</a>
-                                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                                <span className="navbar-toggler-icon"></span>
-                                </button>
-                                <div className="collapse navbar-collapse" id="navbarScroll">
-                                <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll full-nav">
-                                    <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Pre-Production
-                                        </a>
-                                        <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
-                                            <li><a className="dropdown-item" href="#">Post Casting Call</a></li>
-                                            <li><a className="dropdown-item" href="#">Find Crew Members</a></li>
-                                            <li><a className="dropdown-divider"></a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Production
-                                        </a>
-                                        <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                            <li><a className="dropdown-item" href="#">Budgeting</a></li>
-                                            <li><a className="dropdown-item" href="#">Scheduling</a></li>
-                                            <li><a className="dropdown-divider"></a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Post-Production
-                                        </a>
-                                        <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                            <li><a className="dropdown-item" href="#">Post Trailer</a></li>
-                                            <li><a className="dropdown-item" href="#">Enter Festivals</a></li>
-                                            <li><a className="dropdown-divider"></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                                <form className="d-flex">
-                                    <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
-                                    <button className="btn btn-outline-success" type="submit">Search</button>
-                                </form>
-                                </div>
-                            </div>
-                            <nav className="navbar navbar-light bg-light">
-                                {greeting()} 
-                            </nav>
-                        </nav>
-                        <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div className="modal-dialog">
-                                <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Sign In</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body">
-                                <form>
-                                    <div className="mb-3">
-                                        <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                                        <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} onChange={this.handleChange}></input>
-                                        <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
-                                    </div>
-                                    <div className="mb-3">
-                                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                                        <input type="password" className="form-control" id="exampleInputPassword1" name="password" value={this.state.password} onChange={this.handleChange}></input>
-                                    </div>
-                                    <p>Don't have an account yet.</p> <button type="button" onClick={() => this.signUpMethod()}>Sign Up</button>
-                                </form>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" className="btn btn-primary" onClick={() => this.signInMethod()}>Submit</button>
-                                </div>
-                                </div>
-                            </div>
-                            {/* <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div className="modal-dialog">
-                                    <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="exampleModalLabel" >Sign In</h5>
-                                        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div className="modal-body">
-                                    <form>
-                                        <div classname="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={this.state.email} onChange={this.handleChange}></input>
-                                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                                        </div>
-                                        <div className="mb-3">
-                                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="exampleInputPassword1" name="password" value={this.state.password} onChange={this.handleChange}></input>
-                                        </div>
-                                    </form>
-                                    </div>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" className="btn btn-primary" onClick={() => this.signUpMethod()}>Sign Up</button>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div> */}
-                        </div>
+        <div className="Nav sticky-top">
+            <nav className="navbar navbar-expand-lg ">
+                <div className="container-fluid">
+                    <a className="navbar-brand" href="#/">Reel Collaboration</a>
+                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarScroll">
+                    <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll full-nav">
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="/#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Pre-Production
+                            </a>
+                            <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
+                                <li><a className="dropdown-item" href="#/">Post Casting Call</a></li>
+                                <li><a className="dropdown-item" href="#/">Find Crew Members</a></li>
+                                <li><a className="dropdown-divider"></a></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="/#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Production
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a className="dropdown-item" href="#/">Budgeting</a></li>
+                                <li><a className="dropdown-item" href="#/">Scheduling</a></li>
+                                <li><a className="dropdown-divider"></a></li>
+                            </ul>
+                        </li>
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="/#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Post-Production
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a className="dropdown-item" href="#/">Post Trailer</a></li>
+                                <li><a className="dropdown-item" href="#/">Enter Festivals</a></li>
+                                <li><a className="dropdown-divider"></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form className="d-flex">
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
+                        <button className="btn btn-outline-success" type="submit">Search</button>
+                    </form>
                     </div>
                 </div>
-            </div>
+                {greeting()} 
+            </nav>
         </div>
-        );
-    }
+    );
 }
-
-export default Nav;
