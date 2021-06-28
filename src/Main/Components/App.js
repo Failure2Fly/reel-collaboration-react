@@ -13,7 +13,7 @@ export default function App(){
 
   return (
     <div className="App">
-      <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} setSignIn={setSignIn} name={name}/>
+      <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} setSignIn={setSignIn} name={name} signIn={signIn} />
       <SignInModal signIn={signIn} setLoggedIn={setLoggedIn} setName={setName}/>
       <Profile />
       <NavBottom />

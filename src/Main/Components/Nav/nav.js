@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {firebase} from '../../firebase'
 import '../../css/nav.css'
 
 
-export default function Nav({setSignIn, loggedIn, setLoggedIn, name}){
+export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
 
     // const signUpMethod = () => {
     //     firebase.auth().createUserWithEmailAndPassword()
@@ -19,9 +19,14 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name}){
     //     });
     // }
     
-    const signIn = () => {
-        setSignIn(true)
-    }
+    // const signInFunction = () => {
+    //     setSignIn(true)
+    //     console.log(signIn)
+    // }
+    useEffect(() => {
+            setSignIn(true)
+            console.log(signIn)
+    })
 
     const signOutMethod = () => {
         firebase.auth().signOut().then(() => {
@@ -35,24 +40,23 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name}){
 
     const greeting = () => {
         if(loggedIn){
-            return <div className="container-fluid ">                            
-                <ul className="navbar-nav  navbar-nav-scroll">
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#/" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {name}
-                        </a>
-                        <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
-                            <li><a className="dropdown-item" href="#/">Account</a></li>
-                        </ul>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#/" tabindex="-1" onClick={() => signOutMethod()}>Sign Out</a>
-                    </li>
-                </ul>                          
+            return <div className="profile-link">                            
+                <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll ">
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="/#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {name}
+                            </a>
+                            <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
+                                <li><a className="dropdown-item" href="#/">Post Casting Call</a></li>
+                                <li><a className="dropdown-item" href="#/">Find Crew Members</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <a className="nav-link" href="#/" tabindex="-1" onClick={() => signOutMethod()}>Sign Out</a>
             </div>
         }
         else{
-            return <button type="button" className="btn btn-primary sign-in" data-bs-toggle="modal" data-bs-target="#signIn" onClick={() => signIn()}>
+            return <button type="button" className="btn btn-primary sign-in" data-bs-toggle="modal" data-bs-target="#signIn" >
                 Sign In
             </button>                                           
         }
@@ -104,9 +108,9 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name}){
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                    {greeting()} 
                     </div>
                 </div>
-                {greeting()} 
             </nav>
         </div>
     );

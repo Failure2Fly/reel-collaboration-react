@@ -1,0 +1,12 @@
+.modal{
+    background-color: #403D58;
+}
+.modal-content{
+    background-color: #66D7D1;
+    border: solid black 1px;
+}
+.signIn-inputs{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: solid black 1px;
+}
