@@ -19,14 +19,14 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
     //     });
     // }
     
-    // const signInFunction = () => {
-    //     setSignIn(true)
-    //     console.log(signIn)
-    // }
-    useEffect(() => {
-            setSignIn(true)
-            console.log(signIn)
-    })
+    const signInFunction = () => {
+        setSignIn(true)
+        console.log(signIn)
+    }
+    // useEffect(() => {
+    //         setSignIn(true)
+    //         console.log(signIn)
+    // })
 
     const signOutMethod = () => {
         firebase.auth().signOut().then(() => {
@@ -47,8 +47,8 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                                 {name}
                             </a>
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
-                                <li><a className="dropdown-item" href="#/">Post Casting Call</a></li>
-                                <li><a className="dropdown-item" href="#/">Find Crew Members</a></li>
+                                <li><a className="dropdown-item" href="#/">Profile</a></li>
+                                <li><a className="dropdown-item" href="#/">Notifications</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -56,7 +56,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
             </div>
         }
         else{
-            return <button type="button" className="btn btn-primary sign-in" data-bs-toggle="modal" data-bs-target="#signIn" >
+            return <button type="button" className="btn btn-primary sign-in" data-bs-toggle="modal" data-bs-target="#signIn" onClick={() => signInFunction()}>
                 Sign In
             </button>                                           
         }

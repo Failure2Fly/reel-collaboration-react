@@ -1,8 +1,8 @@
-.modal{
+.modal-header, .modal-footer{
     background-color: #403D58;
 }
 .modal-content{
-    background-color: #66D7D1;
+    background-color: #F2EFEA;
     border: solid black 1px;
 }
 .signIn-inputs{

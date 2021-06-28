@@ -1,7 +1,7 @@
 import React from 'react'
 import '../../css/profile.css';
 
-export default function Profile(){
+export default function Profile({name}){
 
     return (
         <div className="container-fluid profile-page">
