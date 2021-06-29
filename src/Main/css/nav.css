@@ -1,5 +1,5 @@
 .Nav{
-    border-bottom: solid black 1px;
+    border-bottom: solid black 2px;
     background-color: #66D7D1;
 }
 .navbar-brand{
@@ -25,6 +25,9 @@
     color: #403D58
 }
 .nav-link:hover{
+    color: #F2E94E;
+}
+.nav-link:focus{
     color: #F2E94E;
 }
 .nav-bottom{

@@ -23,7 +23,6 @@ export default function SignInModal({signIn, setLoggedIn, setName, setSignIn}) {
     });
   }
 
-
   const signUpMethod = () => {
     console.log('hello')
     firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -58,15 +57,15 @@ export default function SignInModal({signIn, setLoggedIn, setName, setSignIn}) {
                   <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                <input type="name" className="form-control signIn-inputs" id="name" placeholder="Name" name="Sign-In-Name" onChange={e => setName(e.target.value)}></input>
+                {/* <input type="name" className="form-control signIn-inputs" id="name" placeholder="Name" name="Sign-In-Name" onChange={e => setName(e.target.value)}></input> */}
                 <input type="email" className="form-control signIn-inputs" id="email" placeholder="Email" name="Sign-In-Email" onChange={e => setEmail(e.target.value)}></input>
                 <input type="password" className="form-control signIn-inputs" id="password" placeholder="Password" name="Sign-In-Password" onChange={e => setPassword(e.target.value)}></input>
                 <p>No Account <a href="#/" data-bs-toggle="modal" data-bs-target="#signUp" onClick={() => signUpFunction()}>Sign Up</a></p>
+                <button type="button" className="btn btn-primary btn-sign-in" data-bs-dismiss="modal"onClick={() => signInMethod()}>Sign In</button>
               </div>
-              <div className="modal-footer">
-
-                  <button type="button" className="btn btn-primary" data-bs-dismiss="modal"onClick={() => signInMethod()}>Submit</button>
-              </div>
+              {/* <div className="modal-footer">
+                  <button type="button" className="btn btn-primary" data-bs-dismiss="modal"onClick={() => signInMethod()}>Sign In</button>
+              </div> */}
           </div>
         </div>
       </div>
@@ -86,10 +85,11 @@ export default function SignInModal({signIn, setLoggedIn, setName, setSignIn}) {
                   <input type="email" className="form-control signIn-inputs" id="email" placeholder="Email" name="Sign-In-Email" onChange={e => setEmail(e.target.value)}></input>
                   <input type="password" className="form-control signIn-inputs" id="password" placeholder="Password" name="Sign-In-Password" onChange={e => setPassword(e.target.value)}></input>
                   <p>Already Have An Account <a href="#/" data-bs-toggle="modal" data-bs-target="#signIn" onClick={() => signInFunction()}>Sign In</a></p>
+                  <button type="button" className="btn btn-primary btn-sign-in" data-bs-dismiss="modal"onClick={() => signUpMethod()}>Create Account</button>
                 </div>
-                <div className="modal-footer">
+                {/* <div className="modal-footer">
                     <button type="button" className="btn btn-primary" data-bs-dismiss="modal"onClick={() => signUpMethod()}>Create Account</button>
-                </div>
+                </div> */}
             </div>
         </div>
       </div>

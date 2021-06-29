@@ -5,6 +5,12 @@
     background-color: #F2EFEA;
     border: solid black 1px;
 }
+.modal-title{
+    color: #F2EFEA;
+}
+.btn-sign-in{
+    float: right;
+}
 .signIn-inputs{
     margin-top: 20px;
     margin-bottom: 20px;
