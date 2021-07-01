@@ -44,7 +44,8 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                 <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll ">
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                {name}
+                                {/* {name} */}
+                                Anna Kendrick
                             </a>
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
                                 <li><a className="dropdown-item" href="#/">Profile</a></li>

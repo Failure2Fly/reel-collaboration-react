@@ -16,12 +16,19 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
+.social-purchase{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 25px;
+}
 .posts{
-    padding-top: 10px;
+    padding-bottom: 20px;
     margin: auto;
     width: 95%;
 }
 .post{
+    display: flex;
+    justify-content: space-between;
     margin-top: 20px;
     border-radius: 5px; 
     height: 120px;
@@ -29,11 +36,87 @@
     border: solid #403D58 1px;
 }
 
+/* Posts */
+.left-side-post{
+    border-right: solid black 1px;
+}
+.like-top{
+    border-bottom: solid black 1px;
+    height: 50%;
+}
+.bi-heart{
+    font-size: 1.75rem;
+}
+.like-bottom{
+    height: 50%;
+}
+.like-amount{
+    margin: auto;
+}
+.middle-post{
+
+}
+.middle-post-top{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.middle-post-bottom{
+    padding: 10px;
+}
+.right-side-post{
+    display: flex;
+    border-left: solid black 1px;
+}
+
+/* Social Sharing */
+.social-image{
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+.social-left{
+    height: 100%;
+    width: 33%;
+}
+.social-middle{
+    height: 100%;
+    width: 33%;
+    border-left: solid black 1px;
+    border-right: solid black 1px;
+}
+.social-right{
+    height: 100%;
+    width: 33%;
+}
+.social-left-top{
+    height: 50%;
+    border-bottom: solid black 1px;
+}
+.social-left-bottom{
+
+}
+.social-middle-top{
+    height: 50%;
+    border-bottom: solid black 1px;
+}
+.social-middle-bottom{
+
+}
+.social-right-top{
+    height: 50%;
+    border-bottom: solid black 1px;
+}
+.social-right-bottom{
+    
+}
+
+
 /* Right Side */
 .col-right{
     border-left: solid black 2px;
-    height: 90vh;
-    background-color: #403D58;
+    /* height: 91vh; */
+    background-color: #66D7D1;
 }
 .profile-top{
     margin-top: 20px;

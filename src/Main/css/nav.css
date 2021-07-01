@@ -1,6 +1,6 @@
 .Nav{
     border-bottom: solid black 2px;
-    background-color: #66D7D1;
+    background-color: #403D58;
 }
 .navbar-brand{
     font-family: 'Special Elite', cursive;
@@ -22,7 +22,7 @@
     margin: 10px 20px 10px 20px;
 }
 .nav-link{
-    color: #403D58
+    color: #DBD56E
 }
 .nav-link:hover{
     color: #F2E94E;
@@ -31,7 +31,7 @@
     color: #F2E94E;
 }
 .nav-bottom{
-    background-color: #66D7D1;
+    background-color: #403D58;
 }
 .nav-bottom .nav-link{
     color: white;
