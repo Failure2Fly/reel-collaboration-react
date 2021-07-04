@@ -1,13 +1,20 @@
 import React, {useState} from 'react';
-import {firebase} from '../../firebase'
+import {firebase, firebaseDatabase} from '../../firebase'
 import '../../css/signInUp.css'
 
-export default function SignInModal({signIn, setLoggedIn, setName, setSignIn}) {
+export default function SignInModal({signIn, setLoggedIn, setName, name, setSignIn}) {
 
   const [signUp, setSignUp] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  // const [name, setName] = useState();
 
+  // const submitProfileName = (name) => {
+  //   console.log('Check...Check')
+  //   firebaseDatabase.ref('Profiles/' + name).push().set({
+  //     name: {name}
+  //   })
+  // }
 
   const signInMethod = () => {
     console.log('hello')
@@ -24,12 +31,13 @@ export default function SignInModal({signIn, setLoggedIn, setName, setSignIn}) {
   }
 
   const signUpMethod = () => {
-    console.log('hello')
+    firebaseDatabase.ref('Profiles/' + name).push().set({
+      name: {name}
+    })
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
-        setLoggedIn(true)
     })
     .catch((error) => {
         var errorCode = error.code;

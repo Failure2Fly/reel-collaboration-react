@@ -1,17 +1,9 @@
-/* All */
-.content-border{
-    border: solid black 1px;
-    width: 95%;
-    margin: auto;
-}
-
-
 /* Left Side */
 .col-left{
     margin-top: 20px;
 }
 .videos{
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -23,129 +15,18 @@
 }
 .posts{
     padding-bottom: 20px;
+    width: 90%;
     margin: auto;
-    width: 95%;
 }
 .post{
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
     border-radius: 5px; 
-    height: 120px;
     background-color: white; 
     border: solid #403D58 1px;
 }
 
-/* Posts */
-.left-side-post{
-    border-right: solid black 1px;
-}
-.like-top{
-    border-bottom: solid black 1px;
-    height: 50%;
-}
-.bi-heart{
-    font-size: 1.75rem;
-}
-.like-bottom{
-    height: 50%;
-}
-.like-amount{
-    margin: auto;
-}
-.middle-post{
-
-}
-.middle-post-top{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-.middle-post-bottom{
-    padding: 10px;
-}
-.right-side-post{
-    display: flex;
-    border-left: solid black 1px;
-}
-
-/* Social Sharing */
-.social-image{
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
-}
-.social-left{
-    height: 100%;
-    width: 33%;
-}
-.social-middle{
-    height: 100%;
-    width: 33%;
-    border-left: solid black 1px;
-    border-right: solid black 1px;
-}
-.social-right{
-    height: 100%;
-    width: 33%;
-}
-.social-left-top{
-    height: 50%;
-    border-bottom: solid black 1px;
-}
-.social-left-bottom{
-
-}
-.social-middle-top{
-    height: 50%;
-    border-bottom: solid black 1px;
-}
-.social-middle-bottom{
-
-}
-.social-right-top{
-    height: 50%;
-    border-bottom: solid black 1px;
-}
-.social-right-bottom{
-    
-}
 
 
-/* Right Side */
-.col-right{
-    border-left: solid black 2px;
-    /* height: 91vh; */
-    background-color: #66D7D1;
-}
-.profile-top{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 20px;
-    color: black;
-}
-.profile-pic{
-    width: 200px;
-    height: 200px; 
-    object-fit: cover;
-    object-position: 100% 0;
-    border-radius: 25%;
-    border: solid black 2px;
-}
-.profile-info{
-    padding-top: 20px;
-    width: 95%;
-    margin: auto;
-    color: Black;
-    text-align: center;
-}
-.profile-info h5{
-    color: White;
-    border: solid #403D58 1px;
-    background-color: Black;
-    border-radius: 5px;
-}
 
 

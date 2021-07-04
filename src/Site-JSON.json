@@ -19,7 +19,7 @@
         "email": ""
     }, 
     "Roles": [
-
+        // Based on role
     ]
 }
 
@@ -30,7 +30,7 @@
 
 // Scheduling
 {
-
+    
 }
 
 // Forum

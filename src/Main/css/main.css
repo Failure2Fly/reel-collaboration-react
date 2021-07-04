@@ -1,0 +1,11 @@
+.main-menu{
+    margin-top: 40px;
+}
+.main-menu a{
+    color: #403D58;
+    font-weight: bold;
+    font-size: 24px;
+}
+.main-menu a:hover{
+    color: #DBD56E;
+}
