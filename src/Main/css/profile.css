@@ -2,12 +2,6 @@
 .col-left{
     margin-top: 20px;
 }
-.videos{
-    padding-bottom: 40px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
 .social-purchase{
     padding-left: 10px;
     padding-right: 10px;

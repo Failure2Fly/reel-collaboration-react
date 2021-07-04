@@ -2,10 +2,7 @@ import React from 'react';
 import '../../css/profile.css';
 import PostSubmit from '../Post/postSubmit';
 import Post from '../Post/post';
-import amazon from "../../../img/icons/amazon-prime-video_logo.png";
-import google from "../../../img/icons/google-play-movies-tv_logo.png";
-import itunes from "../../../img/icons/itunes_logo.png"; 
-import vudu from "../../../img/icons/vudu_logo.png";
+import Movies from '../Movies/movies';
 
 export default function Profile({loggedIn}){
 
@@ -15,36 +12,9 @@ export default function Profile({loggedIn}){
                 <div className="row">
                     <div className="col-md-9 col-left">
                         <div className="videos">
-                            <div className="embed-responsive">
-                                <iframe width="420" height="240" src="https://www.youtube.com/embed/KTpQUZkC0Z8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div>Mr. Right</div>
-                                <div className="purchase" >Purchase
-                                    <img className="social-purchase" src={amazon} alt="" />
-                                    <img className="social-purchase" src={google} alt="" />
-                                    <img className="social-purchase" src={itunes} alt="" />
-                                    <img className="social-purchase" src={vudu} alt="" />
-                                </div>
-                            </div>
-                            <div className="embed-responsive">
-                                <iframe width="420" height="240" src="https://www.youtube.com/embed/cmSbXsFE3l8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div>Pitch Perfect</div>
-                                <div className="purchase" >Purchase
-                                    <img className="social-purchase" src={amazon} alt="" />
-                                    <img className="social-purchase" src={google} alt="" />
-                                    <img className="social-purchase" src={itunes} alt="" />
-                                    <img className="social-purchase" src={vudu} alt="" />
-                                </div>
-                            </div>
-                            <div className="embed-responsive">
-                                <iframe width="420" height="240" src="https://www.youtube.com/embed/vEDyFvKFcoQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                <div>Up In The Air</div>
-                                <div className="purchase" >Purchase
-                                    <img className="social-purchase" src={amazon} alt="" />
-                                    <img className="social-purchase" src={google} alt="" />
-                                    <img className="social-purchase" src={itunes} alt="" />
-                                    <img className="social-purchase" src={vudu} alt="" />
-                                </div>
-                            </div>
+                            <Movies />
+                            <Movies /> 
+                            <Movies />     
                         </div>
                         <div className="content-border">
 

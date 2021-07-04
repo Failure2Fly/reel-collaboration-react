@@ -1,19 +1,41 @@
 import React from 'react'
 import PostSubmit from '../Post/postSubmit';
 import Post from '../Post/post';
+import Movies from '../Movies/movies'
 
 export default function FullMain({loggedIn, moviesLink, castingLink, postLink, newsLink, followingLink}) {
     if(!loggedIn && moviesLink){
         return (
-            <div>Movies</div>
+        <div className="videos">
+            <Movies />
+            <Movies /> 
+            <Movies /> 
+            <Movies /> 
+            <Movies /> 
+            <Movies />
+            <Movies />
+            <Movies /> 
+            <Movies /> 
+            <Movies /> 
+            <Movies /> 
+            <Movies />
+            <Movies /> 
+            <Movies /> 
+            <Movies /> 
+            <Movies />     
+            <Movies /> 
+            <Movies /> 
+            <Movies /> 
+            <Movies />          
+        </div>
         )
     }
-    if(!loggedIn && castingLink){
+    else if(!loggedIn && castingLink){
         return (
             <div>Casting</div>
         )
     }
-    if(!loggedIn && postLink){
+    else if(!loggedIn && postLink){
         return (
             <div>
                 <PostSubmit />
@@ -28,17 +50,40 @@ export default function FullMain({loggedIn, moviesLink, castingLink, postLink, n
             </div>
         )
     }
-    if(!loggedIn && newsLink){
+    else if(!loggedIn && newsLink){
         return (
             <div>News</div>
         )
     }
-    if(!loggedIn && followingLink){
+    else if(!loggedIn && followingLink){
         return (
             <div>Following</div>
         )
     }
     else {
-        return null
+        return (
+            <div className="videos">
+                <Movies />
+                <Movies /> 
+                <Movies /> 
+                <Movies /> 
+                <Movies /> 
+                <Movies />
+                <Movies />
+                <Movies /> 
+                <Movies /> 
+                <Movies /> 
+                <Movies /> 
+                <Movies />
+                <Movies /> 
+                <Movies /> 
+                <Movies /> 
+                <Movies />     
+                <Movies /> 
+                <Movies /> 
+                <Movies /> 
+                <Movies />          
+            </div>
+        )
     }
 }

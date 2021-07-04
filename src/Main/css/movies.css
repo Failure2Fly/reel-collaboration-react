@@ -1,0 +1,15 @@
+.videos{
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+.video{
+    padding-bottom: 50px;
+}
+.social-purchase{
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 25px;
+}
