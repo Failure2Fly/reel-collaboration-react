@@ -68,9 +68,6 @@ export default function MainMenu({loggedIn}) {
                 </li>
             </ul>
             <div className="content-border"></div>
-            <div style={{height: "100px"}}>
-
-            </div>
             <FullMain loggedIn={loggedIn} moviesLink={moviesLink} castingLink={castingLink} postLink={postLink} newsLink={newsLink} followingLink={followingLink}/>
         </div>
     )

@@ -2,6 +2,7 @@ import React from 'react'
 import PostSubmit from '../Post/postSubmit';
 import Post from '../Post/post';
 import Movies from '../Movies/movies'
+import NewsArticle from '../News/news-page';
 
 export default function FullMain({loggedIn, moviesLink, castingLink, postLink, newsLink, followingLink}) {
     if(!loggedIn && moviesLink){
@@ -37,7 +38,7 @@ export default function FullMain({loggedIn, moviesLink, castingLink, postLink, n
     }
     else if(!loggedIn && postLink){
         return (
-            <div>
+            <div className="main-page-posts">
                 <PostSubmit />
                 <Post />
                 <Post />
@@ -52,7 +53,9 @@ export default function FullMain({loggedIn, moviesLink, castingLink, postLink, n
     }
     else if(!loggedIn && newsLink){
         return (
-            <div>News</div>
+            <div>
+                <NewsArticle />
+            </div>
         )
     }
     else if(!loggedIn && followingLink){
