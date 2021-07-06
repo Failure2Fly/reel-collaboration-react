@@ -1,92 +1,31 @@
 import React from 'react'
-import PostSubmit from '../Post/postSubmit';
-import Post from '../Post/post';
-import Movies from '../Movies/movies'
-import NewsArticle from '../News/news-page';
+import { BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import '../../css/main.css';
+import MainMovies from './main-movies';
+import MainCasting from './main-casting';
+import MainPosts from './main-posts';
+import MainNews from './main-news';
+import MainFollowing from './main-following';
 
-export default function FullMain({loggedIn, moviesLink, castingLink, postLink, newsLink, followingLink}) {
-    if(!loggedIn && moviesLink){
-        return (
-        <div className="videos">
-            <Movies />
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />
-            <Movies />
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />     
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />          
-        </div>
-        )
-    }
-    else if(!loggedIn && castingLink){
-        return (
-            <div>Casting</div>
-        )
-    }
-    else if(!loggedIn && postLink){
-        return (
-            <div className="main-page-posts">
-                <PostSubmit />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-                <Post />
-            </div>
-        )
-    }
-    else if(!loggedIn && newsLink){
-        return (
-            <div>
-                <NewsArticle />
-            </div>
-        )
-    }
-    else if(!loggedIn && followingLink){
-        return (
-            <div>Following</div>
-        )
-    }
-    else {
-        return (
-            <div className="videos">
-                <Movies />
-                <Movies /> 
-                <Movies /> 
-                <Movies /> 
-                <Movies /> 
-                <Movies />
-                <Movies />
-                <Movies /> 
-                <Movies /> 
-                <Movies /> 
-                <Movies /> 
-                <Movies />
-                <Movies /> 
-                <Movies /> 
-                <Movies /> 
-                <Movies />     
-                <Movies /> 
-                <Movies /> 
-                <Movies /> 
-                <Movies />          
-            </div>
-        )
-    }
+
+export default function FullMain() {
+    return (
+        <Switch>
+            <Route path='/casting'>
+                <MainCasting/>
+            </Route>
+            <Route path='/posts'>
+                <MainPosts/>
+            </Route>
+            <Route path='/news'> 
+                <MainNews/>
+            </Route>
+            <Route path='/following'>
+                <MainFollowing/>
+            </Route>
+            <Route path={['/movies', '/']}>
+                <MainMovies/>
+            </Route>
+        </Switch>
+    )
 }

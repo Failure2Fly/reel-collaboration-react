@@ -1,6 +1,8 @@
 import React from 'react';
-import {firebase} from '../../firebase'
-import '../../css/nav.css'
+import {firebase} from '../../firebase';
+import '../../css/nav.css';
+import { Link } from "react-router-dom";
+
 
 
 export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
@@ -18,6 +20,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
     //         // ..
     //     });
     // }
+
     
     const signInFunction = () => {
         setSignIn(true)
@@ -48,12 +51,12 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                                 Anna Kendrick
                             </a>
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
-                                <li><a className="dropdown-item" href="#/">Profile</a></li>
+                                <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
                                 <li><a className="dropdown-item" href="#/">Notifications</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <a className="nav-link" href="#/" tabindex="-1" onClick={() => signOutMethod()}>Sign Out</a>
+                    <Link className="nav-link" to="/" tabindex="-1" onClick={() => signOutMethod()}>Sign Out</Link>
             </div>
         }
         else{

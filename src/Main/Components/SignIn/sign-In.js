@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {firebase, firebaseDatabase} from '../../firebase'
 import '../../css/signInUp.css'
+import { useHistory, Link } from 'react-router-dom';
 
 export default function SignInModal({signIn, setLoggedIn, setName, name, setSignIn}) {
 
@@ -9,12 +10,15 @@ export default function SignInModal({signIn, setLoggedIn, setName, name, setSign
   const [password, setPassword] = useState();
   // const [name, setName] = useState();
 
+
   // const submitProfileName = (name) => {
   //   console.log('Check...Check')
   //   firebaseDatabase.ref('Profiles/' + name).push().set({
   //     name: {name}
   //   })
   // }
+
+  const history = useHistory();
 
   const signInMethod = () => {
     console.log('hello')
@@ -28,6 +32,7 @@ export default function SignInModal({signIn, setLoggedIn, setName, name, setSign
         var errorCode = error.code;
         var errorMessage = error.message;
     });
+    history.push('/profile');
   }
 
   const signUpMethod = () => {
@@ -43,6 +48,7 @@ export default function SignInModal({signIn, setLoggedIn, setName, name, setSign
         var errorCode = error.code;
         var errorMessage = error.message;
     });
+    history.push('/profile');
   }
 
   const signUpFunction = () => {
