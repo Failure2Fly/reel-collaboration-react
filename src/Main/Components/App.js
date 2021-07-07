@@ -1,6 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import '../css/App.css';
 import Nav from './Nav/nav'
+import PostCastingCall from './MainPage/NavLinks/post-casting-call'
+import FindCrewMembers from './MainPage/NavLinks/find-crew-members'
+import Budgeting from './MainPage/NavLinks/budgeting'
+import Scheduling from './MainPage/NavLinks/scheduling'
+import PostTrailer from './MainPage/NavLinks/post-trailer'
+import EnterFestivals from './MainPage/NavLinks/enter-festivals'
+import Tools from './MainPage/NavLinks/tools'
+import Advice from './MainPage/NavLinks/advice'
+import Festivals from './MainPage/NavLinks/festivals'
+import Forums from './MainPage/NavLinks/forums'
 import SignInModal from './SignIn/sign-In'
 import MainMenu from './MainPage/main-page-menu';
 import Profile from './Profile/profile'
@@ -13,12 +23,47 @@ export default function App(){
   const [signIn, setSignIn] = useState(true)
   const [name, setName] = useState();
 
+
+  useEffect(() =>{
+    setLoggedIn(sessionStorage.getItem('loggedIn'));
+  }, []) 
+
   return (
     <Router>
       <div className="App">
         <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} setSignIn={setSignIn} name={name} signIn={signIn} />
-        <SignInModal signIn={signIn} setSignIn={setSignIn} setLoggedIn={setLoggedIn} setName={setName} name={name}/>
+        <SignInModal signIn={signIn} setSignIn={setSignIn} setLoggedIn={setLoggedIn} loggedIn={loggedIn}setName={setName} name={name}/>
           <Switch>
+            <Route path='/post-casting-call'>
+                <PostCastingCall/>
+            </Route>
+            <Route path='/find-crew-members'>
+                <FindCrewMembers/>
+            </Route>
+            <Route path='/budgeting'>
+                <Budgeting/>
+            </Route>
+            <Route path='/scheduling'>
+                <Scheduling/>
+            </Route>
+            <Route path='/post-trailer'>
+                <PostTrailer/>
+            </Route>
+            <Route path='/enter-festivals'>
+                <EnterFestivals/>
+            </Route>
+            <Route path='/tools'>
+                <Tools/>
+            </Route>
+            <Route path='/advice'>
+                <Advice/>
+            </Route>
+            <Route path='/festivals'>
+                <Festivals/>
+            </Route>
+            <Route path='/forums'>
+                <Forums/>
+            </Route>
             <Route path='/profile'>
               <Profile loggedIn={loggedIn} name={name}/>  
             </Route>

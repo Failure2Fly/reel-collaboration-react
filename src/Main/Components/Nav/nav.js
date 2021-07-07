@@ -26,15 +26,13 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
         setSignIn(true)
         console.log(signIn)
     }
-    // useEffect(() => {
-    //         setSignIn(true)
-    //         console.log(signIn)
-    // })
 
     const signOutMethod = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
             setLoggedIn(false)
+            sessionStorage.setItem('loggedIn', false);
+            console.log(loggedIn)
           })
           .catch((error) => {
             // An error happened.
@@ -52,7 +50,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                             </a>
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                                <li><a className="dropdown-item" href="#/">Notifications</a></li>
+                                <li><Link className="dropdown-item" to="/notifications">Notifications</Link></li>
                             </ul>
                         </li>
                     </ul>
@@ -82,8 +80,8 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                                 Pre-Production
                             </a>
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
-                                <li><a className="dropdown-item" href="#/">Post Casting Call</a></li>
-                                <li><a className="dropdown-item" href="#/">Find Crew Members</a></li>
+                                <li><Link className="dropdown-item" to="/post-casting-call">Post Casting Call</Link></li>
+                                <li><Link className="dropdown-item" to="/find-crew-members">Find Crew Members</Link></li>
                                 <li><a className="dropdown-divider"></a></li>
                             </ul>
                         </li>
@@ -92,8 +90,8 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                                 Production
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li><a className="dropdown-item" href="#/">Budgeting</a></li>
-                                <li><a className="dropdown-item" href="#/">Scheduling</a></li>
+                                <li><Link className="dropdown-item" to="/budgeting">Budgeting</Link></li>
+                                <li><Link className="dropdown-item" to="/scheduling">Scheduling</Link></li>
                                 <li><a className="dropdown-divider"></a></li>
                             </ul>
                         </li>
@@ -102,8 +100,8 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                                 Post-Production
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                <li><a className="dropdown-item" href="#/">Post Trailer</a></li>
-                                <li><a className="dropdown-item" href="#/">Enter Festivals</a></li>
+                                <li><Link className="dropdown-item" to="/post-trailer">Post Trailer</Link></li>
+                                <li><Link className="dropdown-item" to="/enter-festivals">Enter Festivals</Link></li>
                                 <li><a className="dropdown-divider"></a></li>
                             </ul>
                         </li>

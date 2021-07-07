@@ -6,9 +6,11 @@
     font-family: 'Special Elite', cursive;
     padding-left: 10px;
     color: white;
+    font-size: 30px;
+    font-weight: bold;
 }
-.navbar-brand:hover{
-    color: #403D58;
+.navbar-brand:hover, .navbar-brand:focus{
+    color: #F2E94E;
 }
 .full-nav {
     display: flex !important;

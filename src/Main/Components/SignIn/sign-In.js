@@ -3,7 +3,7 @@ import {firebase, firebaseDatabase} from '../../firebase'
 import '../../css/signInUp.css'
 import { useHistory, Link } from 'react-router-dom';
 
-export default function SignInModal({signIn, setLoggedIn, setName, name, setSignIn}) {
+export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, name, setSignIn}) {
 
   const [signUp, setSignUp] = useState(false);
   const [email, setEmail] = useState();
@@ -27,6 +27,7 @@ export default function SignInModal({signIn, setLoggedIn, setName, name, setSign
         // Signed in
         var user = userCredential.user;
         setLoggedIn(true)
+        sessionStorage.setItem('loggedIn', true);
     })
     .catch((error) => {
         var errorCode = error.code;
@@ -43,6 +44,8 @@ export default function SignInModal({signIn, setLoggedIn, setName, name, setSign
     .then((userCredential) => {
         // Signed in
         var user = userCredential.user;
+        setLoggedIn(true)
+        sessionStorage.setItem('loggedIn', true);
     })
     .catch((error) => {
         var errorCode = error.code;

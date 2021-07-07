@@ -7,8 +7,8 @@ import FullMain from './full-main-page';
 export default function MainMenu({loggedIn}) {
 
     return (
-        <div>
-            <ul className="nav nav-pills nav-fill main-menu">
+        <div className="main-menu">
+            <ul className="nav nav-pills nav-fill main-menu-links">
                 <li className="nav-item">
                     <Link className="nav-link" aria-current="page" to='/movies' >MOVIES</Link>
                 </li>
