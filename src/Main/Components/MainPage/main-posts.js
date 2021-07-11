@@ -2,10 +2,10 @@ import React from 'react';
 import PostSubmit from '../Post/postSubmit';
 import Post from '../Post/post';
 
-export default function MainPosts() {
+export default function MainPosts({loggedIn, name}) {
     return (
         <div className="main-page-posts">
-            <PostSubmit />
+            <PostSubmit loggedIn={loggedIn} name={name}/>
             <Post />
             <Post />
             <Post />

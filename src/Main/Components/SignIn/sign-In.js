@@ -1,56 +1,71 @@
 import React, {useState} from 'react';
-import {firebase, firebaseDatabase} from '../../firebase'
+import { firebase, firebaseDatabase} from '../../firebase'
 import '../../css/signInUp.css'
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
-export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, name, setSignIn}) {
+export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, name, setSignIn, userUID, setUserUID}) {
 
   const [signUp, setSignUp] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  // const [name, setName] = useState();
-
-
-  // const submitProfileName = (name) => {
-  //   console.log('Check...Check')
-  //   firebaseDatabase.ref('Profiles/' + name).push().set({
-  //     name: {name}
-  //   })
-  // }
 
   const history = useHistory();
 
+  const findUserUID = (uid) => {
+    console.log(uid)
+    firebase.database().ref('Profiles/' + uid + '/userInfo')
+    .on('value', (snapshot) => {
+      snapshot.forEach((snap) => {
+        const userInfo = snap.val();
+        setName(userInfo.name.name)
+      })
+      console.log(name)
+    });
+  }
+
+  const pushUserInfo = (uid) => {
+    firebaseDatabase.ref('Profiles/' + uid + '/userInfo').push().set({
+      name: {name},
+      email: {email}, 
+      password: {password}
+    })
+  }
+
   const signInMethod = () => {
-    console.log('hello')
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed in
-        var user = userCredential.user;
+        const user = userCredential.user;
+        const uid = user.uid
         setLoggedIn(true)
+        setUserUID(uid)
+        console.log(uid)
         sessionStorage.setItem('loggedIn', true);
+        findUserUID(uid);
     })
-    .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-    });
+    // .catch((error) => {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    // });
     history.push('/profile');
+    console.log(name)
   }
 
   const signUpMethod = () => {
-    firebaseDatabase.ref('Profiles/' + name).push().set({
-      name: {name}
-    })
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-        // Signed in
+        // Signed up
         var user = userCredential.user;
+        const uid = user.uid
         setLoggedIn(true)
+        setUserUID(uid)
         sessionStorage.setItem('loggedIn', true);
+        pushUserInfo(uid);
     })
-    .catch((error) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-    });
+    // .catch((error) => {
+    //     var errorCode = error.code;
+    //     var errorMessage = error.message;
+    // });
     history.push('/profile');
   }
 

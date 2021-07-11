@@ -4,7 +4,7 @@ import '../../css/main.css';
 import FullMain from './full-main-page';
 
 
-export default function MainMenu({loggedIn}) {
+export default function MainMenu({loggedIn, name}) {
 
     return (
         <div className="main-menu">
@@ -26,7 +26,7 @@ export default function MainMenu({loggedIn}) {
                 </li>
             </ul>
             <div className="content-border"></div>
-            <FullMain />
+            <FullMain loggedIn={loggedIn} name={name}/>
         </div>
     )
 }

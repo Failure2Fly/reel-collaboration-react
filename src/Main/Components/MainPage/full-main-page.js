@@ -8,24 +8,26 @@ import MainNews from './main-news';
 import MainFollowing from './main-following';
 
 
-export default function FullMain() {
+export default function FullMain({loggedIn, name}) {
     return (
-        <Switch>
-            <Route path='/casting'>
-                <MainCasting/>
-            </Route>
-            <Route path='/posts'>
-                <MainPosts/>
-            </Route>
-            <Route path='/news'> 
-                <MainNews/>
-            </Route>
-            <Route path='/following'>
-                <MainFollowing/>
-            </Route>
-            <Route path={['/movies', '/']}>
-                <MainMovies/>
-            </Route>
-        </Switch>
+        <div className="all-main-page">
+            <Switch>
+                <Route path='/casting'>
+                    <MainCasting/>
+                </Route>
+                <Route path='/posts'>
+                    <MainPosts loggedIn={loggedIn} name={name}/>
+                </Route>
+                <Route path='/news'> 
+                    <MainNews/>
+                </Route>
+                <Route path='/following'>
+                    <MainFollowing/>
+                </Route>
+                <Route path={['/movies', '/']}>
+                    <MainMovies/>
+                </Route>
+            </Switch>
+        </div>
     )
 }

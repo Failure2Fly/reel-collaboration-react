@@ -1,20 +1,20 @@
 import React, {useState, useEffect} from 'react';
 import '../css/App.css';
-import Nav from './Nav/nav'
-import PostCastingCall from './MainPage/NavLinks/post-casting-call'
-import FindCrewMembers from './MainPage/NavLinks/find-crew-members'
-import Budgeting from './MainPage/NavLinks/budgeting'
-import Scheduling from './MainPage/NavLinks/scheduling'
-import PostTrailer from './MainPage/NavLinks/post-trailer'
-import EnterFestivals from './MainPage/NavLinks/enter-festivals'
-import Tools from './MainPage/NavLinks/tools'
-import Advice from './MainPage/NavLinks/advice'
-import Festivals from './MainPage/NavLinks/festivals'
-import Forums from './MainPage/NavLinks/forums'
-import SignInModal from './SignIn/sign-In'
+import Nav from './Nav/nav';
+import PostCastingCall from './MainPage/NavLinks/post-casting-call';
+import FindCrewMembers from './MainPage/NavLinks/find-crew-members';
+import Budgeting from './MainPage/NavLinks/budgeting';
+import Scheduling from './MainPage/NavLinks/scheduling';
+import PostTrailer from './MainPage/NavLinks/post-trailer';
+import EnterFestivals from './MainPage/NavLinks/enter-festivals';
+import Tools from './MainPage/NavLinks/tools';
+import Advice from './MainPage/NavLinks/advice';
+import Festivals from './MainPage/NavLinks/festivals';
+import Forums from './MainPage/NavLinks/forums';
+import SignInModal from './SignIn/sign-In';
 import MainMenu from './MainPage/main-page-menu';
-import Profile from './Profile/profile'
-import NavBottom from './Nav/nav-bottom'
+import Profile from './Profile/profile';
+import NavBottom from './Nav/nav-bottom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 export default function App(){
@@ -22,17 +22,19 @@ export default function App(){
   const [loggedIn, setLoggedIn] = useState(false)
   const [signIn, setSignIn] = useState(true)
   const [name, setName] = useState();
+  const [userUID, setUserUID] = useState();
 
 
   useEffect(() =>{
     setLoggedIn(sessionStorage.getItem('loggedIn'));
+    
   }, []) 
 
   return (
     <Router>
       <div className="App">
         <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} setSignIn={setSignIn} name={name} signIn={signIn} />
-        <SignInModal signIn={signIn} setSignIn={setSignIn} setLoggedIn={setLoggedIn} loggedIn={loggedIn}setName={setName} name={name}/>
+        <SignInModal signIn={signIn} setSignIn={setSignIn} setLoggedIn={setLoggedIn} loggedIn={loggedIn}setName={setName} name={name} setUserUID={setUserUID} userUID={userUID}/>
           <Switch>
             <Route path='/post-casting-call'>
                 <PostCastingCall/>
@@ -68,7 +70,7 @@ export default function App(){
               <Profile loggedIn={loggedIn} name={name}/>  
             </Route>
             <Route path='/'>
-              <MainMenu loggedIn={loggedIn}/>
+              <MainMenu loggedIn={loggedIn} name={name}/>
             </Route>
           </Switch>
         <NavBottom />

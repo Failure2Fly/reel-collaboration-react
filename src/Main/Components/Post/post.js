@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import facebook from "../../../img/icons/facebook_logo.png";
 import twitter from "../../../img/icons/twitter_logo.png";
 import tumblr from "../../../img/icons/tumblr_logo.png";

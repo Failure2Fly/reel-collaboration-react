@@ -4,7 +4,7 @@ import PostSubmit from '../Post/postSubmit';
 import Post from '../Post/post';
 import Movies from '../Movies/movies';
 
-export default function Profile({loggedIn}){
+export default function Profile({loggedIn, name}){
 
     if(loggedIn){
         return (       
@@ -24,7 +24,7 @@ export default function Profile({loggedIn}){
 
                             </div>
                             <div className="AllPost">
-                                <PostSubmit />
+                                <PostSubmit name={name} loggedIn={loggedIn}/>
                                 <Post />
                                 <Post />
                                 <Post />

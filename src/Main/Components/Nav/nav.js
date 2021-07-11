@@ -7,20 +7,6 @@ import { Link } from "react-router-dom";
 
 export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
 
-    // const signUpMethod = () => {
-    //     firebase.auth().createUserWithEmailAndPassword()
-    //     .then((userCredential) => {
-    //         // Signed in 
-    //         var user = userCredential.user;
-    //         setLoggedIn(true)
-    //     })
-    //     .catch((error) => {
-    //         var errorCode = error.code;
-    //         var errorMessage = error.message;
-    //         // ..
-    //     });
-    // }
-
     
     const signInFunction = () => {
         setSignIn(true)
@@ -46,7 +32,6 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="/#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {name}
-                                Anna Kendrick
                             </a>
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
@@ -82,7 +67,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="/post-casting-call">Post Casting Call</Link></li>
                                 <li><Link className="dropdown-item" to="/find-crew-members">Find Crew Members</Link></li>
-                                <li><a className="dropdown-divider"></a></li>
+                                {/* <li><a className="dropdown-divider"></a></li> */}
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -92,7 +77,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="/budgeting">Budgeting</Link></li>
                                 <li><Link className="dropdown-item" to="/scheduling">Scheduling</Link></li>
-                                <li><a className="dropdown-divider"></a></li>
+                                {/* <li><a className="dropdown-divider"></a></li> */}
                             </ul>
                         </li>
                         <li className="nav-item dropdown">
@@ -102,7 +87,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                             <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="/post-trailer">Post Trailer</Link></li>
                                 <li><Link className="dropdown-item" to="/enter-festivals">Enter Festivals</Link></li>
-                                <li><a className="dropdown-divider"></a></li>
+                                {/* <li><a className="dropdown-divider"></a></li> */}
                             </ul>
                         </li>
                     </ul>
