@@ -13,6 +13,7 @@ import Festivals from './MainPage/NavLinks/festivals';
 import Forums from './MainPage/NavLinks/forums';
 import SignInModal from './SignIn/sign-In';
 import MainMenu from './MainPage/main-page-menu';
+import AboutUs from './MainPage/NavLinks/about-us';
 import Profile from './Profile/profile';
 import NavBottom from './Nav/nav-bottom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -23,11 +24,11 @@ export default function App(){
   const [signIn, setSignIn] = useState(true)
   const [name, setName] = useState();
   const [userUID, setUserUID] = useState();
-
+  const [posts, setPosts] = useState([]) 
 
   useEffect(() =>{
     setLoggedIn(sessionStorage.getItem('loggedIn'));
-    
+    // setName(setLoggedIn(sessionStorage.getItem('userName')))
   }, []) 
 
   return (
@@ -66,11 +67,14 @@ export default function App(){
             <Route path='/forums'>
                 <Forums/>
             </Route>
+            <Route path='/about-us'>
+                <AboutUs/>
+            </Route>
             <Route path='/profile'>
-              <Profile loggedIn={loggedIn} name={name}/>  
+              <Profile loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts}/>  
             </Route>
             <Route path='/'>
-              <MainMenu loggedIn={loggedIn} name={name}/>
+              <MainMenu loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts}/>
             </Route>
           </Switch>
         <NavBottom />

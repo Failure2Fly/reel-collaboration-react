@@ -8,7 +8,7 @@ import MainNews from './main-news';
 import MainFollowing from './main-following';
 
 
-export default function FullMain({loggedIn, name}) {
+export default function FullMain({loggedIn, name, userUID, setPosts, posts}) {
     return (
         <div className="all-main-page">
             <Switch>
@@ -16,7 +16,7 @@ export default function FullMain({loggedIn, name}) {
                     <MainCasting/>
                 </Route>
                 <Route path='/posts'>
-                    <MainPosts loggedIn={loggedIn} name={name}/>
+                    <MainPosts loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts}/>
                 </Route>
                 <Route path='/news'> 
                     <MainNews/>

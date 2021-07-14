@@ -12,14 +12,13 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
   const history = useHistory();
 
   const findUserUID = (uid) => {
-    console.log(uid)
     firebase.database().ref('Profiles/' + uid + '/userInfo')
     .on('value', (snapshot) => {
       snapshot.forEach((snap) => {
         const userInfo = snap.val();
         setName(userInfo.name.name)
+        sessionStorage.setItem('userName', userInfo.name.name);
       })
-      console.log(name)
     });
   }
 
@@ -29,6 +28,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
       email: {email}, 
       password: {password}
     })
+    sessionStorage.setItem('userName', name);
   }
 
   const signInMethod = () => {
@@ -36,10 +36,11 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
+        console.log(user)
         const uid = user.uid
         setLoggedIn(true)
         setUserUID(uid)
-        console.log(uid)
+        console.log(userUID)
         sessionStorage.setItem('loggedIn', true);
         findUserUID(uid);
     })
@@ -48,7 +49,6 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     //     var errorMessage = error.message;
     // });
     history.push('/profile');
-    console.log(name)
   }
 
   const signUpMethod = () => {
@@ -61,6 +61,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
         setUserUID(uid)
         sessionStorage.setItem('loggedIn', true);
         pushUserInfo(uid);
+        sessionStorage.setItem('userName', name);
     })
     // .catch((error) => {
     //     var errorCode = error.code;

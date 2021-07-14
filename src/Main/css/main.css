@@ -8,8 +8,10 @@
     align-items: center;
 }
 .main-menu{
-    margin-top: 40px;
     margin-bottom: 60px;
+}
+.main-menu-links{
+    margin-top: 40px;
 }
 .main-menu a{
     color: #403D58;
@@ -19,4 +21,21 @@
 .main-menu a:hover{
     color: #DBD56E;
 }
-
+.main-header{
+    height: 200px;
+    text-align: center;
+    padding-top: 20px;
+    background-image: url("https://images.unsplash.com/photo-1543536448-d209d2d13a1c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.main-header-innerText{
+    margin: 20px;
+}
+.main-header-innerText span{
+    font-style: italic;
+}
+.main-header-title{
+    color: white;
+}

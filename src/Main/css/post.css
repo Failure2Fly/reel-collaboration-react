@@ -2,7 +2,9 @@
 .main-page-posts{
     margin-top: 50px;
 }
-
+.AllPost{
+    width: -webkit-fill-available;
+}
 
 
 
@@ -24,137 +26,48 @@
     background-color: #403D58;;
     color: #DBD56E
 }
-.post-section{
-    display: flex;
-    width: 95%;
-    margin: auto;
-    margin-top: 20px;
-}
-.post-section-left{
-    height: 60vh; 
-    border: solid black 1px;
-    width: 500px;
-    margin-right: 20px;
-}
 .posts{
     padding-bottom: 20px;
     width: 90%;
     margin: auto;
 }
 .post{
-    display: flex;
-    justify-content: space-between;
     border-radius: 5px; 
     background-color: white; 
     border: solid #403D58 1px;
 }
-.left-side-post{
-    border-right: solid black 1px;
-}
-.like-top{
-    border-bottom: solid black 1px;
-    height: 50%;
-}
-.bi-heart{
-    font-size: 1.75rem;
-}
-.like-bottom{
-    height: 50%;
-}
-.like-amount{
-    margin: auto;
-}
 .middle-post{
-
+    padding: 10px;
 }
-.middle-post-top{
+.post-top{
     display: flex;
     justify-content: space-between;
-    padding: 10px;
 }
-.middle-post-bottom{
-    padding: 10px;
+.post-middle{
+
 }
-.right-side-post{
+.post-bottom{
     display: flex;
-    border-left: solid black 1px;
-}
-
-/* Social Sharing */
-.social-image{
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
-}
-.social-left{
-    height: 100%;
-    width: 33%;
-}
-.social-middle{
-    height: 100%;
-    width: 33%;
-    border-left: solid black 1px;
-    border-right: solid black 1px;
-}
-.social-right{
-    height: 100%;
-    width: 33%;
-}
-.social-left-top{
-    height: 50%;
-    border-bottom: solid black 1px;
-}
-.social-left-bottom{
-
-}
-.social-middle-top{
-    height: 50%;
-    border-bottom: solid black 1px;
-}
-.social-middle-bottom{
-
-}
-.social-right-top{
-    height: 50%;
-    border-bottom: solid black 1px;
-}
-.social-right-bottom{
-    
+    justify-content: space-between;
 }
 
 
-/* Right Side */
-.col-right{
-    border-left: solid black 2px;
-    /* height: 91vh; */
-    background-color: #66D7D1;
-}
-.profile-top{
-    margin-top: 20px;
+
+/* New Bootstrap Card */
+.card-header{
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 20px;
-    color: black;
+    justify-content: space-between;
 }
-.profile-pic{
-    width: 200px;
-    height: 200px; 
-    object-fit: cover;
-    object-position: 100% 0;
-    border-radius: 25%;
-    border: solid black 2px;
+.card-footer{
+    display: flex;
+    justify-content: space-between;
 }
-.profile-info{
-    padding-top: 20px;
-    width: 95%;
-    margin: auto;
-    color: Black;
-    text-align: center;
+.card-like{
+    display: flex;
 }
-.profile-info h5{
-    color: White;
-    border: solid #403D58 1px;
-    background-color: Black;
-    border-radius: 5px;
-}
+
+
+
+
+
+

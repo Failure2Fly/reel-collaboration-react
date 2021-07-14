@@ -10,15 +10,13 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
     
     const signInFunction = () => {
         setSignIn(true)
-        console.log(signIn)
     }
 
     const signOutMethod = () => {
         firebase.auth().signOut().then(() => {
             // Sign-out successful.
             setLoggedIn(false)
-            sessionStorage.setItem('loggedIn', false);
-            console.log(loggedIn)
+            sessionStorage.clear();
           })
           .catch((error) => {
             // An error happened.
@@ -91,6 +89,9 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                             </ul>
                         </li>
                     </ul>
+                    <div>
+                        <Link className="nav-link nav-right" to="/about-us">About Us</Link>
+                    </div>
                     <form className="d-flex">
                         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
                         <button className="btn btn-outline-success" type="submit">Search</button>

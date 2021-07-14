@@ -1,5 +1,6 @@
 .Nav{
-    border-bottom: solid black 2px;
+    border-bottom: solid black 1px;
+    /* border-color: rgb(160,160,255); */
     background-color: #403D58;
 }
 .navbar-brand{

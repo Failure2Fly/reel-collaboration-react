@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../css/post.css';
 import { firebaseDatabase, firebaseAllPosts } from '../../firebase';
 
-export default function PostSubmit({loggedIn, name}) {
+export default function PostSubmit({loggedIn, name, userUID}) {
 
     const [postDescription, setPostDescription] = useState();
 
@@ -17,11 +17,15 @@ export default function PostSubmit({loggedIn, name}) {
     const submitPost = () => {
         firebaseAllPosts.push().set({
             timeSubmitted: Date(),
-            post: postDescription
+            post: postDescription,
+            userName: name,
+            userUID: userUID
         })
-        firebaseDatabase.ref('Profiles/' + name + '/posts').push().set({
+        firebaseDatabase.ref('Profiles/' + userUID + '/posts').push().set({
             timeSubmitted: Date(),
-            post: postDescription
+            post: postDescription,
+            userName: name,
+            userUID: userUID
         })
         document.getElementById('user-post').value='';
     }
