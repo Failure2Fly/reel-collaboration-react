@@ -3,6 +3,7 @@ import { firebase, firebaseDatabase} from '../../firebase'
 import '../../css/signInUp.css'
 import { useHistory } from 'react-router-dom';
 
+
 export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, name, setSignIn, userUID, setUserUID}) {
 
   const [signUp, setSignUp] = useState(false);
@@ -18,6 +19,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
         const userInfo = snap.val();
         setName(userInfo.name.name)
         sessionStorage.setItem('userName', userInfo.name.name);
+        setUserUID(uid)
       })
     });
   }
@@ -39,7 +41,6 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
         console.log(user)
         const uid = user.uid
         setLoggedIn(true)
-        setUserUID(uid)
         console.log(userUID)
         sessionStorage.setItem('loggedIn', true);
         findUserUID(uid);
@@ -79,6 +80,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     setSignUp(false)
     setSignIn(true)
   }
+  
 
   if(signIn) {
     return ( 

@@ -26,9 +26,13 @@ export default function App(){
   const [userUID, setUserUID] = useState();
   const [posts, setPosts] = useState([]) 
 
-  useEffect(() =>{
+  const setItems = () => {
     setLoggedIn(sessionStorage.getItem('loggedIn'));
-    // setName(setLoggedIn(sessionStorage.getItem('userName')))
+    setName(sessionStorage.getItem('userName'));
+  }
+
+  useEffect(() =>{
+    setItems();
   }, []) 
 
   return (
