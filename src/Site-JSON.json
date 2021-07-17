@@ -11,31 +11,166 @@
 {
     "userId": 1,
     "userInfo": {
-        "userName": "",
+        "firstName": "",
+        "lastName": "",
+        "country": "",
+        "city": "",
+        "state": "",
+        "timezone": "",
         "dateOfBirth": "",
+        "email": "",
         "phoneNumbers": [
-
-        ], 
-        "email": ""
+            {
+                // All phone numbers
+            }
+        ],
+        "photos": [
+            {
+                "profilePic": "",
+                "headshots": [
+                    {
+                        // List of all headshots. Should have a limit. Thinking 12, maybe 24.
+                    }
+                ]
+            }
+        ] 
     }, 
     "Roles": [
-        // Based on role
+        {
+            // Based on role
+        }
+    ], 
+    "Videos": [
+        {
+            // List of Videos. Should have limit. Thinking 3
+        }
+    ],
+    "picturesAttachedTo": [
+        {
+            // Will be a list of movies in production currently working on.
+        }
     ]
 }
 
 // Casting
 {
-
+    "rolesLookingFor": [
+        {
+            // Production
+            "lineProducer": false,
+            "unitProductionManager": false,
+            "productionsCoordinator": false,
+            "productionsSecretary": false,
+            "officePA": false,
+            "assistantToDirector": false,
+            "assistantToProducer": false,
+            // Assistant Director
+            "1stAD": false,
+            "2ndAD": false,
+            "2nd2ndAD": false,
+            "keyPA": false,
+            "setPA": false,
+            // Locations
+            "locationManager": false,
+            "locationAssistant": false,
+            "locationScout": false,
+            "unitPA": false,
+            // Transportation
+            "transportationCaptain": false,
+            "TransportationCoordinator": false,
+            "transportationCoCaptian": false,
+            "driver": false,
+            "pictureCarCoordinator": false,
+            // Sound
+            "productionSoundMixer": false,
+            "boomOperator": false,
+            "soundUtility": false,
+            // Continuity
+            "scriptSupervisor": false,
+            // Camera
+            "directorOfPhotography": false,
+            "1stAssistantCamera": false,
+            "2ndAssistantCamera": false,
+            "stedicamOperator": false,
+            "loader": false,
+            "digitalImagingTechnican": false,
+            "stillsPhotographer": false,
+            "cameraPA": false, 
+            // Grip
+            "keyGrip": false,
+            "bestBoyGrip": false,
+            "dollyGrip": false, 
+            "riggingGrips": false, 
+            // Electric
+            "gaffer": false, 
+            "bestBoyElectric": false, 
+            "electrician": false,
+            "generatorOperator": false,
+            // Art
+            "productionDesigner": false, 
+            "artDirector": false,
+            "artDepartmentCoordinator": false,
+            "constructionCoordinator": false,
+            "carpenter": false,
+            "keyCentric": false,
+            "scenicArtists": false,
+            "setDecorator": false,
+            "buyer": false,
+            "leadman": false,
+            "setDressers": false,
+            "greensman": false,
+            "artPA": false,
+            // Props
+            "propertyMaster": false,
+            "assistantPropertyMaster": false,
+            "propMaker": false,
+            "propAssistant": false, 
+            "foodStylists": false,
+            "animalWrangler": false,
+            // Costumes & Wardrobe
+            "costumeDesigner": false,
+            "assistantCostumeDesigner": false, 
+            "shoppers": false,
+            "wardrobeSupervisor": false,
+            "setCostumes": false,
+            "seamstress": false,
+            // Hair & Makeup
+            "hairDepartmentHead": false,
+            "keyHairDepartment": false,
+            "makeupDepartmentHead": false,
+            "keyMakeupDepartment": false,
+            "specialEffectsMakeup": false, 
+            // Special Effects
+            "specialEffectsCoordinator": false,
+            "supervisor": false,
+            "specialEffectsForeman": false,
+            "specialEffectsTechnician": false,
+            "Armorer/Pyrotechnics": false,
+            // Visual Effects
+            "visualEffectsSupervisor": false,
+            // Stunts
+            "stuntCoordinator": false,
+            "stuntPerformer": false,
+            // Catering
+            "Caterer": false,
+            "Chef": false,
+            "assistantChef": false,
+            // Catering Services
+            "keyCraftService": false,
+            "craftServiceAssistant": false
+        }
+    ]
 }
 
 // Scheduling
 {
-    
+    "timezone": ""
 }
 
 // Forum
 {
-
+    "topic": "",
+    "dateCreated": ""
 }
 
 // Budgeting

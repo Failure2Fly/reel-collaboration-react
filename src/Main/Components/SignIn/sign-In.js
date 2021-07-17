@@ -38,10 +38,8 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user)
         const uid = user.uid
         setLoggedIn(true)
-        console.log(userUID)
         sessionStorage.setItem('loggedIn', true);
         findUserUID(uid);
     })
