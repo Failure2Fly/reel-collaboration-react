@@ -27,32 +27,31 @@ export default function Post({userUID, setPosts, posts}) {
         <>
         {posts.map(data => {
             console.log(data)
-        return(
-            <div className="posts">
-            <div className="post">
-                <div className="card text-center">
-                <div className="card-header">
-                    <h5>{data.userName}</h5>
-                    <h5>{data.timeSubmitted}</h5>
-                </div>
-                <div className="card-body">
-                    {/* <h5 className="card-title">Special title treatment</h5> */}
-                    <p className="card-text">{data.post}</p>
-                </div>
-                <div className="card-footer">
-                    <div className="card-like">
-                        <div>heart</div>
-                        <br/><br/><br/>
-                        <div>count</div>
+            return(
+                <div className="posts">
+                    <div className="post">
+                        <div className="card text-center">
+                        <div className="card-header">
+                            <h5>{data.userName}</h5>
+                            <h5>{data.timeSubmitted}</h5>
+                        </div>
+                        <div className="card-body">
+                            {/* <h5 className="card-title">Special title treatment</h5> */}
+                            <p className="card-text">{data.post}</p>
+                        </div>
+                        <div className="card-footer">
+                            <div className="card-like">
+                                <div className="post-heart">heart</div>
+                                <div className="post-count">count</div>
+                            </div>
+                            <div className="card-social">
+                                <button type="button" class="btn btn-secondary">Share</button>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    <div className="card-social">
-                        <button type="button" class="btn btn-secondary">Share</button>
-                    </div>
                 </div>
-                </div>
-            </div>
-        </div>
-        )
+            )
         })}
         </>
     )

@@ -3,6 +3,7 @@ import '../css/App.css';
 import Nav from './Nav/nav';
 import PostCastingCall from './MainPage/NavLinks/post-casting-call';
 import FindCrewMembers from './MainPage/NavLinks/find-crew-members';
+import Screenwriting from './MainPage/NavLinks/screenwriting';
 import Budgeting from './MainPage/NavLinks/budgeting';
 import Scheduling from './MainPage/NavLinks/scheduling';
 import PostTrailer from './MainPage/NavLinks/post-trailer';
@@ -46,6 +47,9 @@ export default function App(){
             </Route>
             <Route path='/find-crew-members'>
                 <FindCrewMembers/>
+            </Route>
+            <Route path='/screenwriting'>
+                <Screenwriting/>
             </Route>
             <Route path='/budgeting'>
                 <Budgeting/>

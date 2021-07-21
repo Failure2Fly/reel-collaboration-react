@@ -17,7 +17,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     .on('value', (snapshot) => {
       snapshot.forEach((snap) => {
         const userInfo = snap.val();
-        setName(userInfo.name.name)
+        setName(userInfo.name)
         sessionStorage.setItem('userName', userInfo.name.name);
         setUserUID(uid)
       })
@@ -26,9 +26,9 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
 
   const pushUserInfo = (uid) => {
     firebaseDatabase.ref('Profiles/' + uid + '/userInfo').push().set({
-      name: {name},
-      email: {email}, 
-      password: {password}
+      name: name,
+      email: email, 
+      password: password
     })
     sessionStorage.setItem('userName', name);
   }
@@ -54,7 +54,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
         // Signed up
-        var user = userCredential.user;
+        const user = userCredential.user;
         const uid = user.uid
         setLoggedIn(true)
         setUserUID(uid)
@@ -132,6 +132,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     return null
   }
 }
+
 
 
 

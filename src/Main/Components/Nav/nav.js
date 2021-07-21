@@ -65,6 +65,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
                             <ul className="dropdown-menu " aria-labelledby="navbarScrollingDropdown">
                                 <li><Link className="dropdown-item" to="/post-casting-call">Post Casting Call</Link></li>
                                 <li><Link className="dropdown-item" to="/find-crew-members">Find Crew Members</Link></li>
+                                <li><Link className="dropdown-item" to="/screenwriting">Screenwriting</Link></li>
                                 {/* <li><a className="dropdown-divider"></a></li> */}
                             </ul>
                         </li>

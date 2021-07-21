@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../../css/news.css';
 import './news';
 
 export default function NewsArticle() {
+
     return (        
         <div className="container full-news-article">
             {/* <!-- Normal Demo--> */}
