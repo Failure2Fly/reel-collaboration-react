@@ -30,6 +30,7 @@
 - I am currently working on getting information from the user when they sign up. As well as them being able to edit/update their profile info. To include, the bio questions, profile picture and 3 vidoes. 
 - I want to get other users and data added, so I can start testing and flushing out the main page nav links, Movies, Posts, and Following. 
 - Start working on the casting aspect. This will be the main MVP of the project. If I can get a good profile and a good casting page then I'll be happy. Then I could call this the LinkedIN of the film industry for sure.
+- I would also like to work on the responsiveness of the site once I have the MVP I'm looking for. 
 - Beyond that: Working on the scheduling, budgeting, news, festival, screenwriting, forum, advice, etc. pages all added in and working properly. 
 
 ##### New skills, I would like to gain from this site
