@@ -12,9 +12,7 @@ export default function Profile({loggedIn, name, userUID, setPosts, posts}){
             <div className="row">
                 <div className="col-md-9 col-left">
                     <div className="videos">
-                        <Movies />
-                        <Movies /> 
-                        <Movies />     
+                        <Movies />    
                     </div>
                     <div className="content-border">
 
@@ -29,7 +27,7 @@ export default function Profile({loggedIn, name, userUID, setPosts, posts}){
                         </div>
                     </div>
                 </div>
-                <ProfileInfo loggedIn={loggedIn} userUID={userUID}/>
+                <ProfileInfo loggedIn={loggedIn} userUID={userUID} name={name}/>
             </div>
         </div>
     )

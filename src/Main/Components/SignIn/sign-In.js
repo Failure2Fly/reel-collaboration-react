@@ -13,22 +13,30 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
   const history = useHistory();
 
   const findUserUID = (uid) => {
-    firebase.database().ref('Profiles/' + uid + '/userInfo')
+    firebase.database().ref('Profiles/' + uid )
     .on('value', (snapshot) => {
       snapshot.forEach((snap) => {
-        const userInfo = snap.val();
-        setName(userInfo.name)
-        sessionStorage.setItem('userName', userInfo.name.name);
+        const loginInfo = snap.val();
+        setName(loginInfo.name)
+        console.log(loginInfo.name)
+        sessionStorage.setItem('userName', loginInfo.name);
         setUserUID(uid)
       })
     });
   }
 
   const pushUserInfo = (uid) => {
-    firebaseDatabase.ref('Profiles/' + uid + '/userInfo').push().set({
+    firebaseDatabase.ref('Profiles/' + uid + '/loginInfo').push().set({
       name: name,
       email: email, 
       password: password
+    })
+    firebaseDatabase.ref('Profiles/' + uid + '/userInfo').set({
+      name: '',
+      favoriteMovies: '',
+      positions: '',
+      ageRange: '',
+      bio: ''
     })
     sessionStorage.setItem('userName', name);
   }

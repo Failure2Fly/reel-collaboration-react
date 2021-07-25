@@ -1,11 +1,11 @@
 import React from 'react';
 import ProfileInfoEdit from './bio-users';
 
-export default function ProfileInfo({loggedIn, userUID}) {
+export default function ProfileInfo({loggedIn, userUID, name}) {
 
     if(loggedIn){
         return (
-            <ProfileInfoEdit userUID={userUID}/>
+            <ProfileInfoEdit userUID={userUID} name={name}/>
         )
     }
     else{

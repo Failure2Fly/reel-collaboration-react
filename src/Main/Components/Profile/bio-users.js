@@ -1,25 +1,55 @@
-import React, { useState } from 'react';
-import { firebaseDatabase} from '../../firebase'
+import React, { useState, useEffect } from 'react';
+import { firebaseDatabase } from '../../firebase'
 
-export default function ProfileInfoEdit({userUID}) {
+export default function ProfileInfoEdit({userUID, name}) {
 
+
+    const [userInfo, setUserInfo] = useState({});
     const [editClicked, setEditClicked] = useState();
-    const [profileInfoName, setProfileInfoName] = useState();
+    const [profileName, setProfileName] = useState(name);
+    const [profileFavoriteMovies, setProfileFavoriteMovies] = useState('');
+    const [profilePositions, setProfilePositions] = useState('');
+    const [profileAgeRange, setProfileAgeRange] = useState('');
+    const [profileBio, setProfileBio] = useState('');
 
-    const enterBio = () => {
-        console.log(userUID)
-        firebaseDatabase.ref('Profiles/' + userUID + '/userInfo').push().set({
-            name: profileInfoName
+
+    useEffect(() => {
+        firebaseDatabase.ref('Profiles/' + userUID)
+        .on("value", (snapshot) => {
+            snapshot.forEach((snap) => {
+                console.log(snap.val())
+                setUserInfo(snap.val())
+            })
         })
+    }, [])
+
+    const updateInfo = () => {   
+        var userData = {
+            name: profileName,
+            favoriteMovies: profileFavoriteMovies,
+            positions: profilePositions,
+            ageRange: profileAgeRange,
+            bio: profileBio
+        };
+        console.log(userInfo)   
+
+        // var newPostKey = firebaseDatabase.ref().key
+
+        const update = {};
+        update['Profiles/' + userUID + '/userInfo/'] = userData;
+        sessionStorage.setItem('userName', profileName);
+        document.getElementById('userInfo-section').value='';
+        setEditClicked('')
+        return firebaseDatabase.ref().update(update).key;
     }
 
-    const name = (editClicked) => {
+    const userName = (editClicked) => {
         if(editClicked === "name"){
             return (
                 < >
                 <i class="bi bi-pencil-square" onClick={() => setEditClicked()}></i>
-                <input type="text" class="form-control" id="profile-input" onChange={e => setProfileInfoName(e.target.value)}/>
-                <button type="button" className="btn btn-primary btn-lg" onClick={() => enterBio()}>POST</button>
+                <input type="text" class="form-control" id="profile-input" onChange={e => setProfileName(e.target.value)}/>
+                <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </>
             )
         }
@@ -27,7 +57,7 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <>
                 <i class="bi bi-pencil-square" onClick={() => setEditClicked('name')}></i>
-                <h2>Anna Kendrick</h2>
+                <h2>{userInfo.name}</h2>
                 </>
             )
         }
@@ -38,7 +68,8 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-fav-movies profile-info">
                     <h5>FAVORITE MOVIES<i class="bi bi-pencil-square" onClick={() => setEditClicked()}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" />
+                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfileFavoriteMovies(e.target.value)}/>
+                    <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
         }
@@ -46,7 +77,7 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-fav-movies profile-info">
                     <h5>FAVORITE MOVIES<i class="bi bi-pencil-square" onClick={() => setEditClicked('favoriteMovies')}></i></h5>
-                    <p>Pitch Perfect, Into The Woods, Trolls, Noelle, Mike and Dave Need Wedding Dates</p>
+                    <p>{userInfo.favoriteMovies}</p>
                 </div>
             )
         }
@@ -57,7 +88,8 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-positions profile-info">
                     <h5>POSITIONS<i class="bi bi-pencil-square" onClick={()=> setEditClicked()}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" />
+                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfilePositions(e.target.value)}/>
+                    <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
         }
@@ -65,7 +97,7 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-positions profile-info">
                     <h5>POSITIONS<i class="bi bi-pencil-square" onClick={()=> setEditClicked('positions')}></i></h5>
-                    <p>Pitch Perfect, Into The Woods, Trolls, Noelle, Mike and Dave Need Wedding Dates</p>
+                    <p>{userInfo.positions}</p>
                 </div>
             )
         }
@@ -76,7 +108,8 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-positions profile-info">
                     <h5>AGE RANGE<i class="bi bi-pencil-square" onClick={()=> setEditClicked()}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" />
+                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfileAgeRange(e.target.value)}/>
+                    <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
         }
@@ -84,7 +117,7 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-positions profile-info">
                     <h5>AGE RANGE<i class="bi bi-pencil-square" onClick={()=> setEditClicked('ageRange')}></i></h5>
-                    <p>25-35</p>
+                    <p>{userInfo.ageRange}</p>
                 </div>
             )
         }
@@ -95,7 +128,8 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-bio profile-info">
                     <h5>BIO<i class="bi bi-pencil-square" onClick={()=> setEditClicked(null)}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" />
+                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfileBio(e.target.value)}/>
+                    <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
         }
@@ -103,7 +137,7 @@ export default function ProfileInfoEdit({userUID}) {
             return (
                 <div className="profile-bio profile-info">
                     <h5>BIO<i class="bi bi-pencil-square" onClick={()=> setEditClicked('Bio')}></i></h5>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    <p>{userInfo.bio}</p>
                 </div>
             )
         }
@@ -113,8 +147,8 @@ export default function ProfileInfoEdit({userUID}) {
         <div className="col-md-3 col-right">
             <div className="profile-top">
                 {/* <img src="/src/img/simpsons-profile.jpg" alt="" /> */}
-                <img className="profile-pic" src="https://cdn.filestackcontent.com/vxZqhajcTPWNBMjFFOUj" alt=""/>
-                {name(editClicked)}
+                <img className="profile-pic" src="https://scontent.fphx1-2.fna.fbcdn.net/v/t1.18169-9/13076696_1498675416825327_176923072612498417_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=mO1814RxUK0AX-32YnM&_nc_ht=scontent.fphx1-2.fna&oh=2e042e5b56ab9aad949f493bb129e3c1&oe=60FE4C25" alt=""/>
+                {userName(editClicked)}
             </div>
             <div className="content-border">
 

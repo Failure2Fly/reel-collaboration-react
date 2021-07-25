@@ -289,6 +289,31 @@
 
 
 
+{
+    "Profiles" : {
+        "9nfRCqeE60UPPXgZrmPDiIqOnc32" : {
+            "logginInfo" : {
+                "email" : "failure2fly@gmail.com",
+                "name" : "Devin Blankenship",
+                "password" : "password"
+            },
+            "userInfo" : {
+                "name" : "Devin Blankenship",
+                "favoriteMovies": "",
+                "positions": "",
+                "ageRange": "",
+                "bio": ""
+            }
+        }
+    }
+}
+  
+
+
+
+
+
+
 
 
 
