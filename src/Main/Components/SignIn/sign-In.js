@@ -26,7 +26,7 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
   }
 
   const pushUserInfo = (uid) => {
-    firebaseDatabase.ref('Profiles/' + uid + '/loginInfo').push().set({
+    firebaseDatabase.ref('Profiles/' + uid + '/loginInfo').set({
       name: name,
       email: email, 
       password: password

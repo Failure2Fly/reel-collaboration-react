@@ -30,8 +30,7 @@ export default function ProfileInfoEdit({userUID, name}) {
             positions: profilePositions,
             ageRange: profileAgeRange,
             bio: profileBio
-        };
-        console.log(userInfo)   
+        };  
 
         // var newPostKey = firebaseDatabase.ref().key
 
