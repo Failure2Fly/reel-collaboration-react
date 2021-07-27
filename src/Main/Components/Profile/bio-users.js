@@ -1,27 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { firebaseDatabase } from '../../firebase'
 
-export default function ProfileInfoEdit({userUID, name}) {
+export default function ProfileInfoEdit({userUID, name, userInfo}) {
 
-
-    const [userInfo, setUserInfo] = useState({});
     const [editClicked, setEditClicked] = useState();
     const [profileName, setProfileName] = useState(name);
     const [profileFavoriteMovies, setProfileFavoriteMovies] = useState('');
     const [profilePositions, setProfilePositions] = useState('');
     const [profileAgeRange, setProfileAgeRange] = useState('');
     const [profileBio, setProfileBio] = useState('');
-
-
-    useEffect(() => {
-        firebaseDatabase.ref('Profiles/' + userUID)
-        .on("value", (snapshot) => {
-            snapshot.forEach((snap) => {
-                console.log(snap.val())
-                setUserInfo(snap.val())
-            })
-        })
-    }, [])
 
     const updateInfo = () => {   
         var userData = {
@@ -35,7 +22,7 @@ export default function ProfileInfoEdit({userUID, name}) {
         // var newPostKey = firebaseDatabase.ref().key
 
         const update = {};
-        update['Profiles/' + userUID + '/userInfo/'] = userData;
+        update['Profiles/' + userUID + '/userInfo'] = userData;
         sessionStorage.setItem('userName', profileName);
         document.getElementById('userInfo-section').value='';
         setEditClicked('')
@@ -47,7 +34,7 @@ export default function ProfileInfoEdit({userUID, name}) {
             return (
                 < >
                 <i class="bi bi-pencil-square" onClick={() => setEditClicked()}></i>
-                <input type="text" class="form-control" id="profile-input" onChange={e => setProfileName(e.target.value)}/>
+                <input type="text" className="form-control" id="profile-input" onChange={e => setProfileName(e.target.value)}/>
                 <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </>
             )
@@ -55,8 +42,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         else{
             return (
                 <>
-                <i class="bi bi-pencil-square" onClick={() => setEditClicked('name')}></i>
-                <h2>{userInfo.name}</h2>
+                <i className="bi bi-pencil-square" onClick={() => setEditClicked('name')}></i>
+                <h2>name</h2>
                 </>
             )
         }
@@ -67,7 +54,7 @@ export default function ProfileInfoEdit({userUID, name}) {
             return (
                 <div className="profile-fav-movies profile-info">
                     <h5>FAVORITE MOVIES<i class="bi bi-pencil-square" onClick={() => setEditClicked()}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfileFavoriteMovies(e.target.value)}/>
+                    <input type="text" className="form-control" id="profile-input" onChange={e => setProfileFavoriteMovies(e.target.value)}/>
                     <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
@@ -75,8 +62,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         else{
             return (
                 <div className="profile-fav-movies profile-info">
-                    <h5>FAVORITE MOVIES<i class="bi bi-pencil-square" onClick={() => setEditClicked('favoriteMovies')}></i></h5>
-                    <p>{userInfo.favoriteMovies}</p>
+                    <h5>FAVORITE MOVIES<i className="bi bi-pencil-square" onClick={() => setEditClicked('favoriteMovies')}></i></h5>
+                    <p></p>
                 </div>
             )
         }
@@ -86,8 +73,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         if(editClicked === "positions"){
             return (
                 <div className="profile-positions profile-info">
-                    <h5>POSITIONS<i class="bi bi-pencil-square" onClick={()=> setEditClicked()}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfilePositions(e.target.value)}/>
+                    <h5>POSITIONS<i className="bi bi-pencil-square" onClick={()=> setEditClicked()}></i></h5>
+                    <input type="text" className="form-control" id="profile-input" onChange={e => setProfilePositions(e.target.value)}/>
                     <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
@@ -95,8 +82,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         else{
             return (
                 <div className="profile-positions profile-info">
-                    <h5>POSITIONS<i class="bi bi-pencil-square" onClick={()=> setEditClicked('positions')}></i></h5>
-                    <p>{userInfo.positions}</p>
+                    <h5>POSITIONS<i className="bi bi-pencil-square" onClick={()=> setEditClicked('positions')}></i></h5>
+                    <p></p>
                 </div>
             )
         }
@@ -106,8 +93,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         if(editClicked === "ageRange"){
             return (
                 <div className="profile-positions profile-info">
-                    <h5>AGE RANGE<i class="bi bi-pencil-square" onClick={()=> setEditClicked()}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfileAgeRange(e.target.value)}/>
+                    <h5>AGE RANGE<i className="bi bi-pencil-square" onClick={()=> setEditClicked()}></i></h5>
+                    <input type="text" className="form-control" id="profile-input" onChange={e => setProfileAgeRange(e.target.value)}/>
                     <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
@@ -115,8 +102,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         else{
             return (
                 <div className="profile-positions profile-info">
-                    <h5>AGE RANGE<i class="bi bi-pencil-square" onClick={()=> setEditClicked('ageRange')}></i></h5>
-                    <p>{userInfo.ageRange}</p>
+                    <h5>AGE RANGE<i className="bi bi-pencil-square" onClick={()=> setEditClicked('ageRange')}></i></h5>
+                    <p></p>
                 </div>
             )
         }
@@ -126,8 +113,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         if(editClicked === "Bio"){
             return (
                 <div className="profile-bio profile-info">
-                    <h5>BIO<i class="bi bi-pencil-square" onClick={()=> setEditClicked(null)}></i></h5>
-                    <input type="text" class="form-control" id="profile-input" onChange={e => setProfileBio(e.target.value)}/>
+                    <h5>BIO<i className="bi bi-pencil-square" onClick={()=> setEditClicked(null)}></i></h5>
+                    <input type="text" className="form-control" id="profile-input" onChange={e => setProfileBio(e.target.value)}/>
                     <button type="button" className="btn btn-primary btn-lg" id="userInfo-section" onClick={() => updateInfo()}>POST</button>
                 </div>
             )
@@ -135,8 +122,8 @@ export default function ProfileInfoEdit({userUID, name}) {
         else{
             return (
                 <div className="profile-bio profile-info">
-                    <h5>BIO<i class="bi bi-pencil-square" onClick={()=> setEditClicked('Bio')}></i></h5>
-                    <p>{userInfo.bio}</p>
+                    <h5>BIO<i className="bi bi-pencil-square" onClick={()=> setEditClicked('Bio')}></i></h5>
+                    <p></p>
                 </div>
             )
         }
@@ -145,8 +132,7 @@ export default function ProfileInfoEdit({userUID, name}) {
     return (
         <div className="col-md-3 col-right">
             <div className="profile-top">
-                {/* <img src="/src/img/simpsons-profile.jpg" alt="" /> */}
-                <img className="profile-pic" src="https://scontent.fphx1-2.fna.fbcdn.net/v/t1.18169-9/13076696_1498675416825327_176923072612498417_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=mO1814RxUK0AX-32YnM&_nc_ht=scontent.fphx1-2.fna&oh=2e042e5b56ab9aad949f493bb129e3c1&oe=60FE4C25" alt=""/>
+                <img className="profile-pic" src="https://scontent.fphx1-2.fna.fbcdn.net/v/t1.18169-9/13076696_1498675416825327_176923072612498417_n.jpg?_nc_cat=102&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=h3sBwmRwj1kAX-4pWg1&_nc_ht=scontent.fphx1-2.fna&oh=c948b61e5165ebb9ac05137944c11c65&oe=6125D925" alt=""/>
                 {userName(editClicked)}
             </div>
             <div className="content-border">

@@ -30,10 +30,13 @@ export default function App(){
   const setItems = () => {
     setLoggedIn(sessionStorage.getItem('loggedIn'));
     setName(sessionStorage.getItem('userName'));
+    setUserUID(sessionStorage.getItem('uid'));
+    sessionStorage.clear();
   }
 
   useEffect(() =>{
     setItems();
+
   }, []) 
 
   return (

@@ -1,0 +1,26 @@
+/* Page */
+.casting-main-menu-page{
+    margin: 50px auto;
+    width: 90%;
+}
+
+
+
+/* Card Page */
+.casting-main-card-page{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+
+/* Card */
+.casting-card{
+    background-color: #66D7D1;
+    margin-top: 30px;
+    width: 45%;
+}
+.casting-card-left{
+    background-color: #403D58;
+}

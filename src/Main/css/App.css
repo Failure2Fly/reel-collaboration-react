@@ -38,6 +38,7 @@
 
 body{
   background-color: #F2EFEA;
+  background-image: url('../../img/backgrounds/brickwall.png');
 }
 .content-border{
   border: solid black 1px;

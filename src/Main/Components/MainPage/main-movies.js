@@ -1,29 +1,10 @@
 import React from 'react';
-import Movies from '../Movies/movies'
+import MoviesMainPage from '../Movies/movies-main-page';
 
 export default function MainMovies() {
     return (
         <div className="videos">
-            <Movies />
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />
-            <Movies />
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />     
-            <Movies /> 
-            <Movies /> 
-            <Movies /> 
-            <Movies />          
+            <MoviesMainPage />
         </div>
     )
 }

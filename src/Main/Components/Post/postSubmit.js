@@ -15,6 +15,7 @@ export default function PostSubmit({loggedIn, name, userUID}) {
     // }
 
     const submitPost = () => {
+        console.log(name)
         firebaseAllPosts.push().set({
             timeSubmitted: Date(),
             post: postDescription,

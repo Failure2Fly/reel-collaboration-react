@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import '../../css/post.css';
-import { firebaseDatabase, firebaseAllPosts } from '../../firebase';
+import { firebaseAllPosts } from '../../firebase';
 // import facebook from "../../../img/icons/facebook_logo.png";
 // import twitter from "../../../img/icons/twitter_logo.png";
 // import tumblr from "../../../img/icons/tumblr_logo.png";

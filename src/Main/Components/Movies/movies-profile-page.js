@@ -5,7 +5,7 @@ import google from "../../../img/icons/google-play-movies-tv_logo.png";
 import itunes from "../../../img/icons/itunes_logo.png"; 
 import vudu from "../../../img/icons/vudu_logo.png";
 
-export default function movies() {
+export default function MoviesProfilePage() {
     return (<>
         <div className="embed-responsive video">
             <iframe width="420" height="240" src="https://player.vimeo.com/video/382295927" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
