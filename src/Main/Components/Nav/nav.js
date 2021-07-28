@@ -50,7 +50,7 @@ export default function Nav({setSignIn, loggedIn, setLoggedIn, name, signIn}){
 
     return (
         <div className="Nav sticky-top">
-            <nav className="navbar navbar-expand-lg ">
+            <nav className="navbar navbar-expand-lg navbar-dark">
                 <div className="container-fluid">
                     <Link className="navbar-brand" to="/">Reel Collaboration</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">

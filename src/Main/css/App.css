@@ -40,6 +40,9 @@ body{
   background-color: #F2EFEA;
   background-image: url('../../img/backgrounds/brickwall.png');
 }
+.app{
+  width: fit-content;
+}
 .content-border{
   border: solid black 1px;
   width: 95%;

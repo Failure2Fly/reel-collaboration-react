@@ -4,14 +4,14 @@
     background-color: #403D58;
 }
 .navbar-brand{
-    font-family: 'Special Elite', cursive;
+    font-family: 'Special Elite', cursive ;
     padding-left: 10px;
-    color: white;
+    color: white !important;
     font-size: 30px;
     font-weight: bold;
 }
 .navbar-brand:hover, .navbar-brand:focus{
-    color: #F2E94E;
+    color: #F2E94E !important;
 }
 .full-nav {
     display: flex !important;
@@ -25,13 +25,7 @@
     margin: 10px 20px 10px 20px;
 }
 .nav-link{
-    color: #DBD56E
-}
-.nav-link:hover{
-    color: #F2E94E;
-}
-.nav-link:focus{
-    color: #F2E94E;
+    color: #DBD56E !important;
 }
 .nav-bottom{
     background-color: #403D58;

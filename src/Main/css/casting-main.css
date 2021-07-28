@@ -23,4 +23,11 @@
 }
 .casting-card-left{
     background-color: #403D58;
+    padding: 20px;
+}
+.casting-title{
+    color: black;
+}
+.casting-card-bullets{
+    color: white;
 }

@@ -29,6 +29,11 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    border-bottom: solid black 1px;
+}
+.main-header-text{
+    width: 33%;
+    margin: auto;
 }
 .main-header-innerText{
     margin: 20px;
