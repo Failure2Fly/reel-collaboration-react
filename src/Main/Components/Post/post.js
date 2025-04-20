@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../css/post.css';
-import { firebaseAllPosts } from '../../firebase';
+import { collection, doc, getDocs } from "firebase/firestore";
+import {db} from "../../firebase";
 // import facebook from "../../../img/icons/facebook_logo.png";
 // import twitter from "../../../img/icons/twitter_logo.png";
 // import tumblr from "../../../img/icons/tumblr_logo.png";
@@ -10,51 +11,54 @@ import { firebaseAllPosts } from '../../firebase';
 
 export default function Post({userUID, setPosts, posts}) {
 
-    // const [like, setLike] = useState();
-    // const [likeCount, setLikeCount] = useState();
+  const [like, setLike] = useState();
+  const [likeCount, setLikeCount] = useState();
 
-    useEffect(() => {
-        // console.log(userUID)
-        firebaseAllPosts
-        .on("value", (snapshot)=> {
-            snapshot.forEach((snap) => {
-                setPosts((posts) => [...posts, snap.val()])
-            }) 
-        })
-    }, [setPosts])
+  useEffect(() => {
+  // console.log(userUID)
+    const getPosts = async () => {  
+      const querySnapshot = await getDocs(collection(db, "Posts"));
+      let postData = [];
+      querySnapshot.forEach((doc) => {
+        postData.push(doc.data())
+      });
+      setPosts(postData);
+    }
+    getPosts();
+  }, [setPosts])
 
-    return (
-        <>
-        {posts.map(data => {
-            console.log(data)
-            return(
-                <div className="posts">
-                    <div className="post">
-                        <div className="card text-center">
-                        <div className="card-header">
-                            <h5>{data.userName}</h5>
-                            <h5>{data.timeSubmitted}</h5>
-                        </div>
-                        <div className="card-body">
-                            {/* <h5 className="card-title">Special title treatment</h5> */}
-                            <p className="card-text">{data.post}</p>
-                        </div>
-                        <div className="card-footer">
-                            <div className="card-like">
-                                <div className="post-heart">heart</div>
-                                <div className="post-count">count</div>
-                            </div>
-                            <div className="card-social">
-                                <button type="button" class="btn btn-secondary">Share</button>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                </div>
-            )
-        })}
-        </>
-    )
+  return (
+    <>
+    {posts.map(data => {
+      console.log(data)
+      return(
+        <div className="posts">
+          <div className="post">
+            <div className="card text-center">
+            <div className="card-header">
+              <h5>{data.userName}</h5>
+              <h5>{data.timeSubmitted}</h5>
+            </div>
+            <div className="card-body">
+              {/* <h5 className="card-title">Special title treatment</h5> */}
+              <p className="card-text">{data.post}</p>
+            </div>
+            <div className="card-footer">
+              <div className="card-like">
+                <div className="post-heart">heart</div>
+                <div className="post-count">count</div>
+              </div>
+              <div className="card-social">
+                <button type="button" class="btn btn-secondary">Share</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      )
+    })}
+    </>
+  )
 }
 
 

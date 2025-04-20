@@ -17,7 +17,7 @@ import MainMenu from './MainPage/main-page-menu';
 import AboutUs from './MainPage/NavLinks/about-us';
 import Profile from './Profile/profile';
 import NavBottom from './Nav/nav-bottom';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 export default function App(){
 
@@ -43,51 +43,25 @@ export default function App(){
     <Router>
       <div className="App">
         <Nav loggedIn={loggedIn} setLoggedIn={setLoggedIn} setSignIn={setSignIn} name={name} signIn={signIn} />
+        <MainMenu loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts} />
         <SignInModal signIn={signIn} setSignIn={setSignIn} setLoggedIn={setLoggedIn} loggedIn={loggedIn}setName={setName} name={name} setUserUID={setUserUID} userUID={userUID}/>
-          <Switch>
-            <Route path='/post-casting-call'>
-                <PostCastingCall/>
-            </Route>
-            <Route path='/find-crew-members'>
-                <FindCrewMembers/>
-            </Route>
-            <Route path='/screenwriting'>
-                <Screenwriting/>
-            </Route>
-            <Route path='/budgeting'>
-                <Budgeting/>
-            </Route>
-            <Route path='/scheduling'>
-                <Scheduling/>
-            </Route>
-            <Route path='/post-trailer'>
-                <PostTrailer/>
-            </Route>
-            <Route path='/enter-festivals'>
-                <EnterFestivals/>
-            </Route>
-            <Route path='/tools'>
-                <Tools/>
-            </Route>
-            <Route path='/advice'>
-                <Advice/>
-            </Route>
-            <Route path='/festivals'>
-                <Festivals/>
-            </Route>
-            <Route path='/forums'>
-                <Forums/>
-            </Route>
-            <Route path='/about-us'>
-                <AboutUs/>
-            </Route>
-            <Route path='/profile'>
-              <Profile loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts}/>  
-            </Route>
-            <Route path='/'>
-              <MainMenu loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts}/>
-            </Route>
-          </Switch>
+        <Routes>
+          {/* <Route path='/' element={<MainMenu/>} /> */}
+          {/* <Route path='/' element={<MainMenu/>} loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts} /> */}
+          <Route path='/post-casting-call' element={<PostCastingCall/>} />
+          <Route path='/find-crew-members' element={<FindCrewMembers/>} />
+          <Route path='/screenwriting' element={<Screenwriting/>} />
+          <Route path='/budgeting' element={<Budgeting/>} />
+          <Route path='/scheduling' element={<Scheduling/>} />
+          <Route path='/post-trailer' element={<PostTrailer/>} />
+          <Route path='/enter-festivals' element={<EnterFestivals/>} />
+          <Route path='/tools' element={<Tools/>} />
+          <Route path='/advice' element={<Advice/>} />
+          <Route path='/festivals' element={<Festivals/>} />
+          <Route path='/forums' element={<Forums/>} />
+          <Route path='/about-us' element={<AboutUs/>} />
+          <Route path='/profile' element={<Profile loggedIn={loggedIn} name={name} userUID={userUID} setPosts={setPosts} posts={posts}/>} />
+        </Routes>
         <NavBottom />
       </div>
     </Router>

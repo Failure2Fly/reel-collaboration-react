@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
-import { firebase, firebaseDatabase} from '../../firebase'
+import { collection, addDoc, doc, setDoc, getDocs } from "firebase/firestore"; 
 import '../../css/signInUp.css'
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { auth } from "../../firebase";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
+import {db} from "../../firebase";
 
 
 export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, name, setSignIn, userUID, setUserUID}) {
@@ -10,73 +13,103 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  const history = useHistory();
+  let navigate = useNavigate();
+  const auth = getAuth();
 
   const findUserUID = (uid) => {
-    firebase.database().ref('Profiles/' + uid )
-    .on('value', (snapshot) => {
-      snapshot.forEach((snap) => {
-        const loginInfo = snap.val();
-        // console.log(loginInfo)
-        setName(loginInfo.name)
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        // setName(loginInfo.name)
         // console.log(loginInfo.name)
-        sessionStorage.setItem('userName', loginInfo.name);
+        // sessionStorage.setItem('userName', loginInfo.name);
         sessionStorage.setItem('uid', uid);
-      })
+        // ...
+      } else {
+        // User is signed out
+        // ...
+      }
     });
+    // doc.database().ref('Profiles/' + uid )
+    // .on('value', (snapshot) => {
+    //   snapshot.forEach((snap) => {
+    //     const loginInfo = snap.val();
+    //     // console.log(loginInfo)
+    //     setName(loginInfo.name)
+    //     // console.log(loginInfo.name)
+    //     sessionStorage.setItem('userName', loginInfo.name);
+    //     sessionStorage.setItem('uid', uid);
+    //   })
+    // });
   }
 
-  const pushUserInfo = (uid) => {
-    firebaseDatabase.ref('Profiles/' + uid + '/loginInfo').set({
+  const pushUserInfo =  async (uid) => {
+    const profilePush = await addDoc(collection(db, "Profiles"), {
+      timeSubmitted: Date(),
+      name: name,
+      favoriteMovies: '',
+      positions: '',
+      ageRange: '',
+      bio: ''
+    });
+    setDoc.ref('Profiles/' + uid + '/loginInfo').set({
       name: name,
       email: email, 
       password: password
     })
-    firebaseDatabase.ref('Profiles/' + uid + '/userInfo').set({
+    setDoc.ref('Profiles/' + uid + '/userInfo').set({
       name: name,
       favoriteMovies: '',
       positions: '',
       ageRange: '',
       bio: ''
     })
+    const docId = doc.uid;
+    sessionStorage.setItem('docId', docId);
     sessionStorage.setItem('userName', name);
   }
 
   const signInMethod = () => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        // Signed in
+      // Signed in 
       const user = userCredential.user;
       const uid = user.uid
-      setLoggedIn(true)
+      console.log(uid);
+      setLoggedIn(true);
       sessionStorage.setItem('loggedIn', true);
-      setUserUID(uid)
+      setUserUID(uid);
       findUserUID(uid);
+      navigate('/profile');
     })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+    });
     // .catch((error) => {
     //     var errorCode = error.code;
     //     var errorMessage = error.message;
     // });
-    history.push('/profile');
   }
 
   const signUpMethod = () => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
+    createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
-        // Signed up
+      // Signed up 
       const user = userCredential.user;
       const uid = user.uid
       setLoggedIn(true)
       setUserUID(uid)
-      sessionStorage.setItem('loggedIn', true);
-      sessionStorage.setItem('userName', name);
       pushUserInfo(uid);
+      findUserUID(uid);
+      navigate('/profile');
     })
-    // .catch((error) => {
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    // });
-    history.push('/profile');
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
   }
 
   const signUpFunction = () => {
@@ -95,16 +128,16 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
       <div className="modal fade" id="signIn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">SIGN IN</h5>
-                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div className="modal-body">
-                <input type="email" className="form-control signIn-inputs" id="email" placeholder="Email" name="Sign-In-Email" onChange={e => setEmail(e.target.value)}></input>
-                <input type="password" className="form-control signIn-inputs" id="password" placeholder="Password" name="Sign-In-Password" onChange={e => setPassword(e.target.value)}></input>
-                <p>No Account <a href="#/" data-bs-toggle="modal" data-bs-target="#signUp" onClick={() => signUpFunction()}>Sign Up</a></p>
-                <button type="button" className="btn btn-primary btn-sign-in" data-bs-dismiss="modal"onClick={() => signInMethod()}>Sign In</button>
-              </div>
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">SIGN IN</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div className="modal-body">
+              <input type="email" className="form-control signIn-inputs" id="email" placeholder="Email" name="Sign-In-Email" onChange={e => setEmail(e.target.value)}></input>
+              <input type="password" className="form-control signIn-inputs" id="password" placeholder="Password" name="Sign-In-Password" onChange={e => setPassword(e.target.value)}></input>
+              <p>No Account <a href="#/" data-bs-toggle="modal" data-bs-target="#signUp" onClick={() => signUpFunction()}>Sign Up</a></p>
+              <button type="button" className="btn btn-primary btn-sign-in" data-bs-dismiss="modal"onClick={() => signInMethod()}>Sign In</button>
+            </div>
           </div>
         </div>
       </div>
@@ -114,19 +147,19 @@ export default function SignInModal({signIn, setLoggedIn, loggedIn, setName, nam
     return (
       <div className="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-                <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">SIGN UP</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div className="modal-body">
-                  <input type="name" className="form-control signIn-inputs" id="name" placeholder="Name" name="Sign-In-Name" onChange={e => setName(e.target.value)}></input>
-                  <input type="email" className="form-control signIn-inputs" id="email" placeholder="Email" name="Sign-In-Email" onChange={e => setEmail(e.target.value)}></input>
-                  <input type="password" className="form-control signIn-inputs" id="password" placeholder="Password" name="Sign-In-Password" onChange={e => setPassword(e.target.value)}></input>
-                  <p>Already Have An Account <a href="#/" data-bs-toggle="modal" data-bs-target="#signIn" onClick={() => signInFunction()}>Sign In</a></p>
-                  <button type="button" className="btn btn-primary btn-sign-in" data-bs-dismiss="modal"onClick={() => signUpMethod()}>Create Account</button>
-                </div>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">SIGN UP</h5>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div className="modal-body">
+              <input type="name" className="form-control signIn-inputs" id="name" placeholder="Name" name="Sign-In-Name" onChange={e => setName(e.target.value)}></input>
+              <input type="email" className="form-control signIn-inputs" id="email" placeholder="Email" name="Sign-In-Email" onChange={e => setEmail(e.target.value)}></input>
+              <input type="password" className="form-control signIn-inputs" id="password" placeholder="Password" name="Sign-In-Password" onChange={e => setPassword(e.target.value)}></input>
+              <p>Already Have An Account <a href="#/" data-bs-toggle="modal" data-bs-target="#signIn" onClick={() => signInFunction()}>Sign In</a></p>
+              <button type="button" className="btn btn-primary btn-sign-in" data-bs-dismiss="modal"onClick={() => signUpMethod()}>Create Account</button>
+            </div>
+          </div>
         </div>
       </div>
     )
